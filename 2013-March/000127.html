@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] [steko/totalopenstation] Tests fail with PyPy (issue #41)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20%5Bsteko/totalopenstation%5D%20Tests%20fail%20with%20PyPy%20%28issue%20%2341%29&In-Reply-To=%3C20130328174357.29109.40649%40bitbucket20.managed.contegix.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000126.html">
+   <LINK REL="Next"  HREF="000128.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] [steko/totalopenstation] Tests fail with PyPy (issue #41)</H1>
+    <B>Stefano Costa</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20%5Bsteko/totalopenstation%5D%20Tests%20fail%20with%20PyPy%20%28issue%20%2341%29&In-Reply-To=%3C20130328174357.29109.40649%40bitbucket20.managed.contegix.com%3E"
+       TITLE="[tops-dev] [steko/totalopenstation] Tests fail with PyPy (issue #41)">issues-reply at bitbucket.org
+       </A><BR>
+    <I>Thu Mar 28 18:43:57 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000126.html">[tops-dev] commit/totalopenstation: steko: Die, tabs, die!
+</A></li>
+        <LI>Next message: <A HREF="000128.html">[tops-dev] commit/totalopenstation: steko: Don't assume identity between strings with the same value. Fix #41
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#127">[ date ]</a>
+              <a href="thread.html#127">[ thread ]</a>
+              <a href="subject.html#127">[ subject ]</a>
+              <a href="author.html#127">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>New issue 41: Tests fail with PyPy
+<A HREF="https://bitbucket.org/steko/totalopenstation/issue/41/tests-fail-with-pypy">https://bitbucket.org/steko/totalopenstation/issue/41/tests-fail-with-pypy</A>
+
+Stefano Costa:
+
+We have a small number of unit tests to help with our development. Today I ran the test suite with [PyPy](<A HREF="http://pypy.org/">http://pypy.org/</A>) and 3 of them failed, all related to the `PolarPoint` class in `formats/polar.py`.
+
+```
+[<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">steko at ogma</A> totalopenstation]$ pypy -m unittest discover
+EEE...
+======================================================================
+ERROR: test_points (totalopenstation.tests.test_nikon.TestNikonParser)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;/home/steko/code/totalopenstation/totalopenstation/tests/test_nikon.py&quot;, line 19, in test_points
+    self.assertAlmostEqual(self.fp.points[0][1], 8.9092817528619808)
+  File &quot;/home/steko/code/totalopenstation/totalopenstation/formats/nikon_raw_v200.py&quot;, line 64, in _points
+    points.append(p.to_point().tuplepoint)
+  File &quot;/home/steko/code/totalopenstation/totalopenstation/formats/polar.py&quot;, line 93, in to_point
+    self.angle,
+AttributeError: PolarPoint instance has no attribute 'angle'
+
+======================================================================
+ERROR: test_shorter (totalopenstation.tests.test_nikon.TestNikonParser)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;/home/steko/code/totalopenstation/totalopenstation/tests/test_nikon.py&quot;, line 22, in test_shorter
+    self.assertEqual(self.fp.points[2][4], 'P')
+  File &quot;/home/steko/code/totalopenstation/totalopenstation/formats/nikon_raw_v200.py&quot;, line 64, in _points
+    points.append(p.to_point().tuplepoint)
+  File &quot;/home/steko/code/totalopenstation/totalopenstation/formats/polar.py&quot;, line 93, in to_point
+    self.angle,
+AttributeError: PolarPoint instance has no attribute 'angle'
+
+======================================================================
+ERROR: test_polar (totalopenstation.tests.test_polar.TestPolar)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;/home/steko/code/totalopenstation/totalopenstation/tests/test_polar.py&quot;, line 21, in test_polar
+    self.assertEqual(self.p0.to_cartesian(), '100.0,100.0,110.0')
+  File &quot;/home/steko/code/totalopenstation/totalopenstation/formats/polar.py&quot;, line 80, in to_cartesian
+    self.angle,
+AttributeError: PolarPoint instance has no attribute 'angle'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (errors=3)
+```
+
+Responsible: steko
+--
+
+This is an issue notification from bitbucket.org. You are receiving
+this either because you are the owner of the issue, or you are
+following the issue.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000126.html">[tops-dev] commit/totalopenstation: steko: Die, tabs, die!
+</A></li>
+	<LI>Next message: <A HREF="000128.html">[tops-dev] commit/totalopenstation: steko: Don't assume identity between strings with the same value. Fix #41
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#127">[ date ]</a>
+              <a href="thread.html#127">[ thread ]</a>
+              <a href="subject.html#127">[ subject ]</a>
+              <a href="author.html#127">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

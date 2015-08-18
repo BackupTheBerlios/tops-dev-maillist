@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] New issue 12 in totalopenstation: bug in serial	connection GUI code
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20New%20issue%2012%20in%20totalopenstation%3A%20bug%20in%20serial%0A%09connection%20GUI%20code&In-Reply-To=%3C1cfcb6715617a38ac8e2458234db8ad3%40bitbucket.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000023.html">
+   <LINK REL="Next"  HREF="000025.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] New issue 12 in totalopenstation: bug in serial	connection GUI code</H1>
+    <B>issues-noreply at bitbucket.org</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20New%20issue%2012%20in%20totalopenstation%3A%20bug%20in%20serial%0A%09connection%20GUI%20code&In-Reply-To=%3C1cfcb6715617a38ac8e2458234db8ad3%40bitbucket.org%3E"
+       TITLE="[tops-dev] New issue 12 in totalopenstation: bug in serial	connection GUI code">issues-noreply at bitbucket.org
+       </A><BR>
+    <I>Sat Jan 16 15:58:05 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000023.html">[tops-dev] New issue 11 in totalopenstation: write docstrings for	all objects
+</A></li>
+        <LI>Next message: <A HREF="000025.html">[tops-dev] New issue 13 in totalopenstation: try to obtain a better performance for data downloading
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#24">[ date ]</a>
+              <a href="thread.html#24">[ thread ]</a>
+              <a href="subject.html#24">[ subject ]</a>
+              <a href="author.html#24">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>--- you can reply above this line ---
+
+New issue 12: bug in serial connection GUI code
+<A HREF="http://bitbucket.org/steko/totalopenstation/issue/12/bug-in-serial-connection-gui-code">http://bitbucket.org/steko/totalopenstation/issue/12/bug-in-serial-connection-gui-code</A>
+
+Stefano Costa / steko on Sat, 16 Jan 2010 15:58:05 +0100:
+
+Description:
+  A recent API change, geared towards splitting completely the serial connection from the parsing of data also at module level, has left the GUI in a broken, inconsistent state.
+When clicking on the //Connect// button, this error appears in the console:
+{{{
+Exception in Tkinter callback
+Traceback (most recent call last):
+  File &quot;/usr/lib/python2.5/lib-tk/Tkinter.py&quot;, line 1417, in __call__
+    return self.func(*args)
+  File &quot;./totalopenstation-gui.py&quot;, line 655, in connect_action
+    mc = iformats.ModelConnector(chosen_port)
+AttributeError: 'dict' object has no attribute 'ModelConnector'
+}}}
+Our plan for the serial connection is to get rid of &quot;models&quot; in the code, enable users to define their connection parameters in the GUI (saved in a preferences file), but then this change should be implemented for 0.2.
+
+Responsible:
+  steko
+-- 
+This is an issue notification from bitbucket.org.
+You are receiving this either because you are the
+owner of the issue, or you are following the issue.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000023.html">[tops-dev] New issue 11 in totalopenstation: write docstrings for	all objects
+</A></li>
+	<LI>Next message: <A HREF="000025.html">[tops-dev] New issue 13 in totalopenstation: try to obtain a better performance for data downloading
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#24">[ date ]</a>
+              <a href="thread.html#24">[ thread ]</a>
+              <a href="subject.html#24">[ subject ]</a>
+              <a href="author.html#24">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] Serial Exception: could not open port COM4: [Error 5]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Serial%20Exception%3A%20could%20not%20open%20port%20COM4%3A%20%5BError%205%5D&In-Reply-To=%3CCOL111-W5428DD41A14705AE91D5678E620%40phx.gbl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000048.html">
+   <LINK REL="Next"  HREF="000050.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] Serial Exception: could not open port COM4: [Error 5]</H1>
+    <B>Maxim Jaffe</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Serial%20Exception%3A%20could%20not%20open%20port%20COM4%3A%20%5BError%205%5D&In-Reply-To=%3CCOL111-W5428DD41A14705AE91D5678E620%40phx.gbl%3E"
+       TITLE="[tops-dev] Serial Exception: could not open port COM4: [Error 5]">maxim_jaffe at hotmail.com
+       </A><BR>
+    <I>Wed Jun  8 15:43:20 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000048.html">[tops-dev] Serial Exception: could not open port COM4: [Error 5]
+</A></li>
+        <LI>Next message: <A HREF="000050.html">[tops-dev] Serial Exception: could not open port COM4: [Error 5]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#49">[ date ]</a>
+              <a href="thread.html#49">[ thread ]</a>
+              <a href="subject.html#49">[ subject ]</a>
+              <a href="author.html#49">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Hello again!
+
+Here go the tests you suggested Stefano, along with some additional stuff..! Hope it is not to repetitive but prefer to send you more information then less..! Like I said I have a vague notion of python, just never have the time to study it properly.. really enjoy it though and these tests remind me why, it is quite easy to get practical results with it :)!
+
+Also managed to install Portmon which seems quite useful although only have a slight clue of what the output means. I'll attach the portmon log of the session I ran on python (it has a .log extension but it seems to just be a text file, opens fine on notepad, guess it should open in gedit or similar).
+
+C:\Documents and Settings\Cartografia&gt;python
+Python 2.5.1 (r251:54863, Apr 18 2007, 08:51:08) [MSC v.1310 32 bit (Intel)] on
+win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt;<i> import serial
+</I>&gt;&gt;&gt;<i> s=serial.Serial('COM4')
+</I>&gt;&gt;&gt;<i> s
+</I>Serial&lt;id=0xe95770, open=True&gt;(port='COM4', baudrate=9600, bytesize=8, parity='N
+', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+&gt;&gt;&gt;<i> s.close()
+</I>&gt;&gt;&gt;<i> s
+</I>Serial&lt;id=0xe95770, open=False&gt;(port='COM4', baudrate=9600, bytesize=8, parity='
+N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+&gt;&gt;&gt;<i> t=serial.Serial('COM4')
+</I>&gt;&gt;&gt;<i> t
+</I>Serial&lt;id=0xe9b3b0, open=True&gt;(port='COM4', baudrate=9600, bytesize=8, parity='N
+', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+&gt;&gt;&gt;<i> t.close()
+</I>&gt;&gt;&gt;<i> t
+</I>Serial&lt;id=0xe9b3b0, open=False&gt;(port='COM4', baudrate=9600, bytesize=8, parity='
+N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+&gt;&gt;&gt;<i> s.open()
+</I>&gt;&gt;&gt;<i> t.open()
+</I>Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;C:\Python25\Lib\site-packages\serial\serialwin32.py&quot;, line 56, in open
+    raise SerialException(&quot;could not open port %s: %s&quot; % (self.portstr, ctypes.W
+inError()))
+serial.serialutil.SerialException: could not open port COM4: [Error 5] Acesso ne
+gado.
+&gt;&gt;&gt;<i> s.close()
+</I>&gt;&gt;&gt;<i> t.open()
+</I>&gt;&gt;&gt;<i> s
+</I>Serial&lt;id=0xe95770, open=False&gt;(port='COM4', baudrate=9600, bytesize=8, parity='
+N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+&gt;&gt;&gt;<i> t
+</I>Serial&lt;id=0xe9b3b0, open=True&gt;(port='COM4', baudrate=9600, bytesize=8, parity='N
+', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+&gt;&gt;&gt;<i> serial.Serial('COM4').close()
+</I>Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;C:\Python25\Lib\site-packages\serial\serialwin32.py&quot;, line 30, in __init
+__
+    SerialBase.__init__(self, *args, **kwargs)
+  File &quot;C:\Python25\Lib\site-packages\serial\serialutil.py&quot;, line 260, in __init
+__
+    self.open()
+  File &quot;C:\Python25\Lib\site-packages\serial\serialwin32.py&quot;, line 56, in open
+    raise SerialException(&quot;could not open port %s: %s&quot; % (self.portstr, ctypes.W
+inError()))
+serial.serialutil.SerialException: could not open port COM4: [Error 5] Acesso ne
+gado.
+&gt;&gt;&gt;<i> t.close()
+</I>&gt;&gt;&gt;<i> serial.Serial('COM4').close()
+</I>&gt;&gt;&gt;<i> u=serial.Serial('COM4').close()
+</I>&gt;&gt;&gt;<i> u
+</I>&gt;&gt;&gt;<i>
+</I>
+Based on portmon everything seems to work fine, only time I got an error was when I forgot to close the the &quot;t&quot; variable. Left the error in just as an example. The last commands I found interesting since it showed a response in the portmon log, even though it outputs nothing be it by itself or assigned to a variable. I'm guessing it closes and opens on the fly as you mentioned right?
+
+There just one thing that stills boggles me a bit, is that I ran all these test simply with the usb to serial cable connected so COM4 would be recognised, but no device on its end..! I guess for these kinds of tests there is no need to have a device connected right..?
+
+Anyways about trying to run things again on TOPS the only thing I have to report different is that now I know something happens based on Portmon's log (I'll also attach it). It seems to open the port when I have the total station connected and on but I don't see any output mentioning the port  being closed (like in the previous tests). Also no message from the gui show up only in the python shell that opens up along with, only when you press the connect button again does it show a message.
+
+Hope this helps in getting closer to the a solution ;)!
+
+Ciao,
+Maxim
+
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">steko at iosa.it</A>
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">tops-dev at lists.berlios.de</A>
+Date: Tue, 7 Jun 2011 22:37:27 +0200
+Subject: Re: [tops-dev] Serial Exception: could not open port COM4: [Error 5]
+
+Il giorno Tue, 07/06/2011 alle 19.58 +0100, Maxim Jaffe ha scritto:
+&gt;<i> 
+</I>&gt;<i> The first time the serial.Serial() function seems to run okay and
+</I>&gt;<i> second time it gave the error. Everytime you restart the shell the
+</I>&gt;<i> function works fine first time around.
+</I> 
+Maxim,
+great feedback! I've seen this kind of problems before but I never had
+the time to debug &#8210; I don't have a Windows machine.
+ 
+This is 99% due to the fact that opening a serial port is a blocking
+operation. The second time you're getting an error because the port is
+already blocked by the first invocation of serial.Serial: I'm guessing,
+but it looks reasonable.
+ 
+Apparently this behaviour is only happening on Windows, but if it turns
+out to be a a common problem we could try to add a workaround inside
+TOPS.
+ 
+Assigning the serial.Serial to a variable
+        
+        s = serial.Serial('COM4')
+ 
+could you try to close the port with
+ 
+        s.close()
+ 
+and then calling a second time Serial(), with another variable name:
+ 
+        t = serial.Serial('COM4')
+ 
+and see if it gives an error or not? If this works (e.g. you're not
+getting the error anymore), we could try to catch the SerialException
+when it occurs and closing the port on the fly, like calling
+ 
+        serial.Serial('COM4').close()
+ 
+I cannot test this last suggestion, but it would be very helpful if you
+could tell us how it goes. We will add a FAQ to the website until there
+is a proper fix.
+ 
+Also, did you try again downloading data from TOPS? Apparently it should
+be able to open the port just like it was the &quot;first time&quot; in your
+tests.
+ 
+&gt;<i> I also realized that the baudrate through that command was 9600 so
+</I>&gt;<i> tried running the command with baudrate=19200 as an argument which
+</I>&gt;<i> returns a similar result, first time works and second time doesn't
+</I>&gt;<i> anymore.
+</I> 
+Yes, this shouldn't make a huge difference for these simple tests, but I
+see you are making quick progress with the Python interpreter :-)
+ 
+&gt;<i> On a side note, I have a portable with opensuse installed but don't
+</I>&gt;<i> have a 9-pin serial port and not sure where to get a driver for the
+</I>&gt;<i> usb to serial cable, plus I haven't even looked into installing TOPS
+</I>&gt;<i> in that computer so figured that in windows it seemed a little more
+</I>&gt;<i> straightforward to test everything. Also, although I'm a big fan of
+</I>&gt;<i> linux systems, it be nice to have this working with FUMDHAM's
+</I>&gt;<i> computers which are mostly running windows..!
+</I> 
+I absolutely agree with you, supporting Windows is one of our top
+priorities (even though we mostly use Linux ourselves). Hopefully with
+your help we can provide first-time users with a more complete
+experience. We have been trying to produce a single, portable executable
+for Windows that could be carried also on a USB stick, but we didn't
+succeed, so far.
+ 
+Don't worry about drivers for usb-serial cables: they work
+out-of-the-box on Linux (you will get a port like &quot;/dev/ttyUSB0&quot;): this
+is one of the advantages over Windows. So, you could install TOPS also
+on your OpenSUSE laptop.
+ 
+Ciao
+Stefano
+ 
+-- 
+Stefano Costa
+<A HREF="http://www.iosa.it/">http://www.iosa.it/</A> Open Archaeology
+
+_______________________________________________
+tops-dev mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">tops-dev at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">https://lists.berlios.de/mailman/listinfo/tops-dev</A> 		 	   		  
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20110608/bcaf56d8/attachment.html">https://lists.berlios.de/pipermail/tops-dev/attachments/20110608/bcaf56d8/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: Portmon_Log.LOG
+Type: application/octet-stream
+Size: 11026 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20110608/bcaf56d8/attachment.obj">https://lists.berlios.de/pipermail/tops-dev/attachments/20110608/bcaf56d8/attachment.obj</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: TOPS_Portmon_Log.LOG
+Type: application/octet-stream
+Size: 1614 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20110608/bcaf56d8/attachment-0001.obj">https://lists.berlios.de/pipermail/tops-dev/attachments/20110608/bcaf56d8/attachment-0001.obj</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000048.html">[tops-dev] Serial Exception: could not open port COM4: [Error 5]
+</A></li>
+	<LI>Next message: <A HREF="000050.html">[tops-dev] Serial Exception: could not open port COM4: [Error 5]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#49">[ date ]</a>
+              <a href="thread.html#49">[ thread ]</a>
+              <a href="subject.html#49">[ subject ]</a>
+              <a href="author.html#49">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

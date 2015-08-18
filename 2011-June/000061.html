@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] TOPS installation under OpenSuse
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20TOPS%20installation%20under%20OpenSuse&In-Reply-To=%3Ccol111-w29E3A528E4E2CCB353ECFD8E6E0%40phx.gbl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000060.html">
+   <LINK REL="Next"  HREF="000062.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] TOPS installation under OpenSuse</H1>
+    <B>Maxim Jaffe</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20TOPS%20installation%20under%20OpenSuse&In-Reply-To=%3Ccol111-w29E3A528E4E2CCB353ECFD8E6E0%40phx.gbl%3E"
+       TITLE="[tops-dev] TOPS installation under OpenSuse">maxim_jaffe at hotmail.com
+       </A><BR>
+    <I>Mon Jun 20 22:56:03 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000060.html">[tops-dev] commit/totalopenstation: steko: [output] fix #13 using cStringIO instead of StringIO.
+</A></li>
+        <LI>Next message: <A HREF="000062.html">[tops-dev] TOPS installation under OpenSuse
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#61">[ date ]</a>
+              <a href="thread.html#61">[ thread ]</a>
+              <a href="subject.html#61">[ subject ]</a>
+              <a href="author.html#61">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Hello everyone!
+
+After having some difficulties with TOPS on windows (as I reported on a previous post) I'm trying it out on OpenSuse but seems I'm a bit out of luck can't seem to get it installed easily... used the command recommended in the documentation under &quot;Installing &gt;Using pip&quot; but seems like things are not quite right...
+
+Here goes the output from the commandline:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">possum at ljaffe3</A>:~&gt; pip -E tops install totalopenstation
+Downloading/unpacking totalopenstation
+  Downloading totalopenstation-0.2.0dev.tar.gz (123Kb): 123Kb downloaded
+  Running setup.py egg_info for package totalopenstation
+    Traceback (most recent call last):
+      File &quot;&lt;string&gt;&quot;, line 14, in &lt;module&gt;
+      File &quot;/home/possum/tops/build/totalopenstation/setup.py&quot;, line 1, in &lt;module&gt;
+        from distribute_setup import use_setuptools
+    ImportError: No module named distribute_setup
+    Complete output from command python setup.py egg_info:
+    Traceback (most recent call last):
+
+  File &quot;&lt;string&gt;&quot;, line 14, in &lt;module&gt;
+
+  File &quot;/home/possum/tops/build/totalopenstation/setup.py&quot;, line 1, in &lt;module&gt;
+
+    from distribute_setup import use_setuptools
+
+ImportError: No module named distribute_setup
+
+----------------------------------------
+Command python setup.py egg_info failed with error code 1
+Storing complete log in /home/possum/.pip/pip.log
+<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">possum at ljaffe3</A>:~&gt; pip -E tops install distribute_setup
+Downloading/unpacking distribute-setup
+  Could not find any downloads that satisfy the requirement distribute-setup
+No distributions at all found for distribute-setup
+Storing complete log in /home/possum/.pip/pip.log
+
+Any clues on what is wrong? I tried some commands like &quot;pip install distribute_setup&quot; but doesn't seem to help..
+
+Thanks in advance for any help you can give me
+
+Maxim Jaffe
+
+
+ 		 	   		  
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20110620/192f793d/attachment.html">https://lists.berlios.de/pipermail/tops-dev/attachments/20110620/192f793d/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000060.html">[tops-dev] commit/totalopenstation: steko: [output] fix #13 using cStringIO instead of StringIO.
+</A></li>
+	<LI>Next message: <A HREF="000062.html">[tops-dev] TOPS installation under OpenSuse
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#61">[ date ]</a>
+              <a href="thread.html#61">[ thread ]</a>
+              <a href="subject.html#61">[ subject ]</a>
+              <a href="author.html#61">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

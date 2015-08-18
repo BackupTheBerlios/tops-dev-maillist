@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] Improvement suggestions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Improvement%20suggestions&In-Reply-To=%3C1567998.ozpsi2oE91%40lenovo-muw%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000113.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] Improvement suggestions</H1>
+    <B>Volker Fr&#246;hlich</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Improvement%20suggestions&In-Reply-To=%3C1567998.ozpsi2oE91%40lenovo-muw%3E"
+       TITLE="[tops-dev] Improvement suggestions">volker27 at gmx.at
+       </A><BR>
+    <I>Thu Jun 14 21:34:56 CEST 2012</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000113.html">[tops-dev] Improvement suggestions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#112">[ date ]</a>
+              <a href="thread.html#112">[ thread ]</a>
+              <a href="subject.html#112">[ subject ]</a>
+              <a href="author.html#112">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear developers!
+
+I created a draft RPM package of Totalopenstation, to include it into Fedora. 
+Here a couple of minor findings from doing so:
+
+Some files, for instance totalopenstation/models/trimble.py or 
+totalopenstation/models/leica_tcr_1205.py, claim to be &quot;Under the GNU GPL 3 
+License&quot;, which does not indicate later versions of the GPL are allowed as 
+well. This is in contrast to files like totalopenstation/output/tops_sql.py, 
+that clearly allow later versions. Please clarify the licensing issue.
+
+Every desktop application should have a .desktop file, as described in 
+<A HREF="http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-">http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-</A>
+latest.html. Ideally, you'd also include an icon, but that is up to you. 
+Talking about the icon, the logo is said to be copyrighted. Is it still 
+distributed by the terms of the GPL?
+
+This could be a simple totalopenstation.desktop:
+
+[Desktop Entry]
+Name=Totalopenstation
+Comment=Download and process data from total station devices
+Exec=totalopenstation-gui
+Icon=totalopenstation
+Terminal=false
+Type=Application
+Categories=Utility;Education;Science;Geoscience;Geography;
+
+You can always validate spec files with desktop-file-validate.
+
+Files not intended to be executed should not contain a shebang, for instance 
+totalopenstation/output/tops_dat.py or totalopenstation/output/tops_csv.py.
+
+Invoking totalopenstation-cli-connector.py results in an error for me:
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">volker at lenovo-muw</A> ~]$ totalopenstation-cli-connector.py
+Traceback (most recent call last):
+  File &quot;/usr/bin/totalopenstation-cli-connector.py&quot;, line 57, in &lt;module&gt;
+      modelclass = BUILTIN_INPUT_FORMATS[options.model]
+      NameError: name 'BUILTIN_INPUT_FORMATS' is not defined
+
+Are you not installing the locales?
+
+totalopenstation-cli-connector.py crashes for me:
+
+#[<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">volker at lenovo-muw</A> ~]$ totalopenstation-cli-connector.py
+#Traceback (most recent call last):
+#  File &quot;/usr/bin/totalopenstation-cli-connector.py&quot;, line 57, in &lt;module&gt;
+#      modelclass = BUILTIN_INPUT_FORMATS[options.model]
+#      NameError: name 'BUILTIN_INPUT_FORMATS' is not defined
+
+The executable files should not have a py extension. The executable permissions 
+and the shebang is enough.
+
+Greetings,
+
+Volker Fr&#246;hlich
+Fedora
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000113.html">[tops-dev] Improvement suggestions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#112">[ date ]</a>
+              <a href="thread.html#112">[ thread ]</a>
+              <a href="subject.html#112">[ subject ]</a>
+              <a href="author.html#112">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

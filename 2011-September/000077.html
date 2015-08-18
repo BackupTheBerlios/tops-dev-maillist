@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] A couple of bugs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20A%20couple%20of%20bugs&In-Reply-To=%3CCAPb4CERoG5jGwnTc%2B%3Dw8g1g6G8QKVqYsu4%2Bvco7WqiXT3KOemA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000076.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] A couple of bugs</H1>
+    <B>Anna Hodgkinson</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20A%20couple%20of%20bugs&In-Reply-To=%3CCAPb4CERoG5jGwnTc%2B%3Dw8g1g6G8QKVqYsu4%2Bvco7WqiXT3KOemA%40mail.gmail.com%3E"
+       TITLE="[tops-dev] A couple of bugs">hodgkinson.anna at gmail.com
+       </A><BR>
+    <I>Sat Sep 24 21:25:34 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000076.html">[tops-dev] A couple of bugs
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#77">[ date ]</a>
+              <a href="thread.html#77">[ thread ]</a>
+              <a href="subject.html#77">[ subject ]</a>
+              <a href="author.html#77">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Steko,
+
+Thanks for the email.
+Sorry I don't have very much time for emailing, very busy on site and in the
+evening.
+So, I had a few tries - the baudrate is the same, yes, 19200.
+
+I tested the fixpoints problem again, here are my results:
+
+1) sent as GSI (fixpoints) from Leica TCR705 with &quot;custom&quot; settings, changed
+baudrate to 19200, saved as .dxf - only data layer produced, no text layer
+
+2) sent as DXF (fixpoints) from Leica TCR705 with &quot;custom&quot; settings, changed
+baudrate to 19200, saved as .dxf - only data layer produced, no text layer
+
+3) sent as dxf (not CAD) (fixpoints) from Leica TCR705 with &quot;TCR705&quot;
+settings, disregarded baudrate, saved as .dxf - exported text layer, worked
+:<i>-) - I have attached the &quot;test3.dxf&quot; containing the results.
+</I>
+4) sent as GSI (fixpoints) from Leica TCR705 with &quot;TCR705&quot; settings,
+disregarded baudrate, saved as .dxf - only data layer produced, no text
+layer
+
+We had big problems with the &quot;sleep call&quot; today - my friend is surveying
+large sets of points and I had to reconnect several times. When I uploaded
+the datasets we found that some points were missing and hadn't been
+downloaded. I tried downloading with &quot;custom&quot; settings - at first a huge
+chunk of data was downloaded, but then I had to reconnect about 15 times and
+save as many individual DXFs to get the whole dataset downloaded, very
+painful :(
+
+Anyway, it copes okay with smaller datasets.
+
+All the best,
+
+Anna
+
+
+2011/9/23 Stefano Costa &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">steko at iosa.it</A>&gt;
+
+&gt;<i> Il 23/09/11 15:20, Anna Hodgkinson ha scritto:
+</I>&gt;<i> &gt; Hello,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I am reporting a couple of faults discovered whilst using TOPS to
+</I>&gt;<i> download a
+</I>&gt;<i> &gt; Leica TCR705 total station:
+</I>&gt;<i>
+</I>&gt;<i> Hi Anna,
+</I>&gt;<i> thanks a lot for your detailed reports. Replies are inline below.
+</I>&gt;<i>
+</I>&gt;<i> &gt; 1) When sending the data (after connecting my total station to the
+</I>&gt;<i> laptop)
+</I>&gt;<i> &gt; TOPS sends me a message after 527 bytes saying my download had finished,
+</I>&gt;<i> &gt; even though no &quot;end&quot; message had been displayed in the data window. The
+</I>&gt;<i> &gt; total station's display is then still saying it's &quot;Downloading
+</I>&gt;<i> &gt; Measurements&quot;. So, when I hit &quot;connect&quot; again the download continues to
+</I>&gt;<i> &gt; download all the data and the &quot;end&quot; message finally is displayed after a
+</I>&gt;<i> &gt; while.
+</I>&gt;<i>
+</I>&gt;<i> This looks like a bug here
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="https://bitbucket.org/steko/totalopenstation/src/27a645a3158d/scripts/totalopenstation-gui.py#cl-696">https://bitbucket.org/steko/totalopenstation/src/27a645a3158d/scripts/totalopenstation-gui.py#cl-696</A>
+</I>&gt;<i> and in the following lines. The sleep() call should not be hardcoded.
+</I>&gt;<i>
+</I>&gt;<i> Could you provide us with the connection parameters you are using? Are
+</I>&gt;<i> the parameters (especially, baudrate) the same as hard-coded at
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="https://bitbucket.org/steko/totalopenstation/src/27a645a3158d/totalopenstation/models/leica_tcr_705.py#cl-14">https://bitbucket.org/steko/totalopenstation/src/27a645a3158d/totalopenstation/models/leica_tcr_705.py#cl-14</A>
+</I>&gt;<i> ? Again, we should move these parameters out of Python code. We already
+</I>&gt;<i> have a plan for this - it's not necessarily related to the problem
+</I>&gt;<i> you're experiencing but it should help.
+</I>&gt;<i>
+</I>&gt;<i> &gt; 2) The Leica TCR705 allows one to download both measurements and
+</I>&gt;<i> fixpoints
+</I>&gt;<i> &gt; separately. I tend to download these as DXFs and then ave the raw data as
+</I>&gt;<i> &gt; DXF from TOPS, too.
+</I>&gt;<i> &gt; I use the DXF2SHP converter in QGIS to obtain the measurements, and this
+</I>&gt;<i> &gt; works fine. I get both a data and a text layer. The data layer is usually
+</I>&gt;<i> &gt; empty, but the text layer has all the data in it. When I try converting
+</I>&gt;<i> the
+</I>&gt;<i> &gt; fixpoints.dxf to shape I only get an (empty) data layer.
+</I>&gt;<i>
+</I>&gt;<i> I am afraid this depends on how the DXF is crafted specifically for the
+</I>&gt;<i> purposes of the first person who asked me to support it. Could you
+</I>&gt;<i> please send us both a sample raw file and a DXF with the expected
+</I>&gt;<i> output? One thing we are working on is to have options for output
+</I>&gt;<i> formats, so that we can have multiple usage patterns.
+</I>&gt;<i>
+</I>&gt;<i> There's also a nice trick you could do with GeoJSON that would save you
+</I>&gt;<i> from using DXF2SHP, but I'm leaving that for another time.
+</I>&gt;<i>
+</I>&gt;<i> All the best,
+</I>&gt;<i> steko
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> <A HREF="http://steko.iosa.it/">http://steko.iosa.it/</A> - Stefano Costa
+</I>&gt;<i> <A HREF="http://www.iosa.it/">http://www.iosa.it/</A> - Open Archaeology
+</I>&gt;<i> <A HREF="http://www.attivarti.org/">http://www.attivarti.org/</A> - l'associazione per m(')appare
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> tops-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">tops-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">https://lists.berlios.de/mailman/listinfo/tops-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+
+-- 
+Anna Kathrin Hodgkinson
+PhD student
+School of Archaeology, Classics and Egyptology
+Liverpool University
+
+Archaeologist and Surveyor
+Gurob Harem Palace Project
+www.gurob.org.uk
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20110924/d0af0cc6/attachment.html">https://lists.berlios.de/pipermail/tops-dev/attachments/20110924/d0af0cc6/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: test3.dxf
+Type: application/dxf
+Size: 6731 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20110924/d0af0cc6/attachment.bin">https://lists.berlios.de/pipermail/tops-dev/attachments/20110924/d0af0cc6/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000076.html">[tops-dev] A couple of bugs
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#77">[ date ]</a>
+              <a href="thread.html#77">[ thread ]</a>
+              <a href="subject.html#77">[ subject ]</a>
+              <a href="author.html#77">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

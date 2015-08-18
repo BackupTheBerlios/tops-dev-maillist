@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] request for review
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20request%20for%20review&In-Reply-To=%3C1259788560.7432.84.camel%40gibreel%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000015.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] request for review</H1>
+    <B>Stefano Costa</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20request%20for%20review&In-Reply-To=%3C1259788560.7432.84.camel%40gibreel%3E"
+       TITLE="[tops-dev] request for review">steko at iosa.it
+       </A><BR>
+    <I>Wed Dec  2 22:16:00 CET 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000015.html">[tops-dev] [PATCH] PEP-8 compliance for all our code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#14">[ date ]</a>
+              <a href="thread.html#14">[ thread ]</a>
+              <a href="subject.html#14">[ subject ]</a>
+              <a href="author.html#14">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+in the past few days I've had some spare time to work on TOPS (mainly
+while I was travelling by train).
+
+Instead of sending single patches for review as I usually do, I'd like
+to ask you to get my changes here (either as hg repo or as source
+archive)
+
+<A HREF="http://bitbucket.org/steko/totalopenstation-steko/">http://bitbucket.org/steko/totalopenstation-steko/</A>
+<A HREF="http://bitbucket.org/steko/totalopenstation-steko/get/tip.zip">http://bitbucket.org/steko/totalopenstation-steko/get/tip.zip</A>
+
+There are *lots of changes*, this is the diffstat output:
+
+ formats/__init__.py            |   79 ++++++++++++++
+ formats/formats.py             |   39 +++++++
+ formats/leica_tcr_1205.py      |   56 ++++++++++
+ formats/leica_tcr_705.py       |   59 ++++++++++
+ formats/trimble_are.py         |   68 ++++++++++++
+ formats/zeiss_rec_500.py       |   94 +++++++++++++++++
+ models/generic.py              |   59 ----------
+ models/leica_tcr_1205.py       |   34 ------
+ models/leica_tcr_705.py        |   37 ------
+ models/trimble.py              |   47 ++------
+ models/zeiss_elta_r55.py       |   71 ------------
+ output/tops_csv.py             |   19 ++-
+ output/tops_dat.py             |   19 +-
+ output/tops_dxf.py             |  136 ++++++++++++++++++-----
+ output/tops_sql.py             |   26 ++-
+ tops_ParserExport.py           |  125 ----------------------
+ tops_paramset.py               |   47 --------
+ totalopenstation-cli-parser.py |   61 ++++++----
+ totalopenstation-gui.py        |  226 ++++++++++++++++++++--------------------
+ 19 files changed, 700 insertions(+), 602 deletions(-)
+
+I have mainly done work in these areas:
+      * enhance the CLI parser program and make it usable (which is the
+        best for testing)
+      * changed output modules so that they return strings instead of
+        writing to a file object - this way code is cleaner and less
+        prone to errors
+      * split Connector code (i.e. serial connection parameters) from
+        Parser code - the parsing of downloaded data is now in the
+        ``formats`` module and it is completely separated. This enables
+        testing that code even without ever touching a total station. In
+        the future the Connector code could be completely rewritten from
+        scratch, I'll write my ideas about it soon.
+
+There are some other minor changes and adapting of the user interfaces
+to the above changes.
+
+If it is ok for you, I'd like to push everything to the main repo. Even
+though there has never been a true 0.1 release, I always thought that
+the new ``formats`` was the change between 0.1 and 0.2, but there's no
+point in having a release if we decide to push development further until
+the API is a bit more stable, particularly with regard to formats (we
+haven't done anything for processing raw data with polar coordinates and
+distance instead of XYZ coordinates, yet).
+
+Let me know. Cheers,
+steko
+
+
+-- 
+Stefano Costa
+<A HREF="http://www.iosa.it/">http://www.iosa.it/</A> Open Archaeology
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: Questa ? una parte del messaggio firmata digitalmente
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20091202/f3f4d42d/attachment.pgp">https://lists.berlios.de/pipermail/tops-dev/attachments/20091202/f3f4d42d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000015.html">[tops-dev] [PATCH] PEP-8 compliance for all our code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#14">[ date ]</a>
+              <a href="thread.html#14">[ thread ]</a>
+              <a href="subject.html#14">[ subject ]</a>
+              <a href="author.html#14">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

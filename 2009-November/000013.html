@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] Current Status of Development and Opportunities to Contribute
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Current%20Status%20of%20Development%20and%20Opportunities%20to%0A%20Contribute&In-Reply-To=%3C1259234325.2661.59.camel%40gibreel%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000012.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] Current Status of Development and Opportunities to Contribute</H1>
+    <B>Stefano Costa</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Current%20Status%20of%20Development%20and%20Opportunities%20to%0A%20Contribute&In-Reply-To=%3C1259234325.2661.59.camel%40gibreel%3E"
+       TITLE="[tops-dev] Current Status of Development and Opportunities to Contribute">steko at iosa.it
+       </A><BR>
+    <I>Thu Nov 26 12:18:45 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000012.html">[tops-dev] Current Status of Development and Opportunities to	Contribute
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#13">[ date ]</a>
+              <a href="thread.html#13">[ thread ]</a>
+              <a href="subject.html#13">[ subject ]</a>
+              <a href="author.html#13">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Il giorno mer, 25/11/2009 alle 08.05 -0800, Sunburned Surveyor ha
+scritto:
+
+&gt;<i> I'm glad to hear TOPS is still being developed. Is there a list of the
+</I>&gt;<i> currently supported total stations? Perhaps I can help implement a
+</I>&gt;<i> couple of brands/models you don't have access to. I've got Leica and
+</I>&gt;<i> Topcon models at work.
+</I>
+There's not such a list (at least an updated one), but you can see the
+actual list of models here:
+<A HREF="https://hg.berlios.de/repos/tops/file/84d60519421b/models/models.py#l8">https://hg.berlios.de/repos/tops/file/84d60519421b/models/models.py#l8</A>
+
+It would be great if you could implement new models. We usually write a
+separated parser for each format. Different models can output the same
+format and viceversa a single device can output many formats (not all
+models do however). The roadmap is to completely separate formats from
+models in the code.
+
+Right now we're in the middle of re-thinking the program internals a
+bit, so your input is very valuable.
+
+&gt;<i> I've never used Mercurial. I'm familiar with CSV, SVN, and I'm
+</I>&gt;<i> starting to learn Git. I'm a little weary about getting another
+</I>&gt;<i> version control system on my computer. :] Is there a way to download a
+</I>&gt;<i> zip file of the source code?
+</I>
+<A HREF="https://hg.berlios.de/repos/tops/archive/tip.tar.gz">https://hg.berlios.de/repos/tops/archive/tip.tar.gz</A> the easy way. Once
+you've made the move from CVS/SVN to git, hg shouldn't be that hard (btw
+this topic would be an interesting one for the interview).
+
+&gt;<i> I write code in a little more than AutoLISP. :] Java is my favorite
+</I>&gt;<i> programing language, and I am fairly hand with it. I am passingly
+</I>&gt;<i> familiar with Python and just started work on another open source
+</I>&gt;<i> program in Python. Most of my programming work is on the open source
+</I>&gt;<i> desktop GIS program OpenJUMP. I only work with AutoLISP so I can
+</I>&gt;<i> customize the CAD programs I use at work.
+</I>
+Sorry I have underestimated your skills :) I do like OpenJUMP and have
+used it a bit last year. Python was my choice because it's almost the
+only programming language I've learnt (by myself). The availability of a
+good library for accessing the serial port was a nice extra..
+
+&gt;<i> I should probably get a build of TOPS working on my computer before I
+</I>&gt;<i> provide to much feedback. I am curious about the overall goals of the
+</I>&gt;<i> program. Is it simply going to be a tool for moving data from total
+</I>&gt;<i> stations? Or will it be like a gateway, allowing the user to move data
+</I>&gt;<i> back and forth?
+</I>
+The initial &quot;itch to scratch&quot; was to move over the need for Microsoft
+Windows just to download data with a dedicated program. After that came
+the beauty of one program &quot;to rule them all&quot; instead of many proprietary
+programs, one for each brand/model - often in archaeological units more
+than one total station is used and this generates a useless overhead.
+
+Right now it's just a one-way tool from total station to computer. In my
+team there's no actual need to move data the opposite way, but I would
+say &quot;why not?&quot;.. in the end once we understand the ASCII format used by
+a model it's even easier to create data than to read it.
+
+To try it, just download the compressed archive, make sure you have
+Python and the two needed libraries (tkinter and pyserial), see
+<A HREF="http://tops.berlios.de/docs/requirements.html">http://tops.berlios.de/docs/requirements.html</A> (outdated, but still
+valid). On Mac OSX or Linux it's quite easy - Windows requires a bit
+longer procedure right now and we're working on a dedicated installer.
+
+&gt;<i> Will the program do more, like allow for the adjustment of total
+</I>&gt;<i> station measurements and the automatic generation of linework?
+</I>
+This is on our TODO list.
+
+&gt;<i> Are you guys using tcl/tk for the program's GUI?
+</I>
+At the moment, yes. Tcl/Tk comes with Python's standard library and
+works out of the box on all platforms (an I mean *all* ... think
+OpenMoko). It's not a complete GUI toolkit so we're evaluating more
+mature toolkits like GTK+ and Qt, but their adoption would require for
+sure a complete rewrite of the program internals.
+
+&gt;<i> At this point, I'm mostly interested in learning how the program
+</I>&gt;<i> works. Then I may have some ideas for how I can help.
+</I>
+Basically the program is split into 3 separate parts that deal with
+      * downloading data from total stations (this is just a wrapper
+        around pyserial)
+      * reading data, extracting coordinate values and attributes for
+        points
+      * exporting data to useful formats for use in CAD or GIS software
+        (current formats: DXF, CSV, SQL for PostGIS or SpatiaLite and a
+        dedicated format for a photorectification program)
+
+The GUI exposes these features to users, enabling things like saving raw
+data and processing them later. The same is available through a command
+line program for nerds like myself.
+
+&gt;<i> I appreciate the quick response. I think you guys are doing great work
+</I>&gt;<i> that is right up my alley. Programs like TOPS could really change the
+</I>&gt;<i> dynamics of the surveying industry in the long run.
+</I>
+I'd be glad if such a thing happens some time in the future. As said
+before, I'm an archaeologist and Luca Bianconi is a programmer, so we're
+not surveying professionals - your help could improve the project a lot.
+
+Best,
+steko
+
+-- 
+Stefano Costa
+<A HREF="http://www.iosa.it/">http://www.iosa.it/</A> Open Archaeology
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: Questa ? una parte del messaggio firmata digitalmente
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20091126/d89c0767/attachment.pgp">https://lists.berlios.de/pipermail/tops-dev/attachments/20091126/d89c0767/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000012.html">[tops-dev] Current Status of Development and Opportunities to	Contribute
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#13">[ date ]</a>
+              <a href="thread.html#13">[ thread ]</a>
+              <a href="subject.html#13">[ subject ]</a>
+              <a href="author.html#13">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

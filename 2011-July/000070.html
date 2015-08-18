@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] FW:  TOPS installation under OpenSuse
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20FW%3A%20%20TOPS%20installation%20under%20OpenSuse&In-Reply-To=%3C1309615416.2910.23.camel%40ganymede%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000071.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] FW:  TOPS installation under OpenSuse</H1>
+    <B>Stefano Costa</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20FW%3A%20%20TOPS%20installation%20under%20OpenSuse&In-Reply-To=%3C1309615416.2910.23.camel%40ganymede%3E"
+       TITLE="[tops-dev] FW:  TOPS installation under OpenSuse">steko at iosa.it
+       </A><BR>
+    <I>Sat Jul  2 16:03:36 CEST 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000071.html">[tops-dev] Total Open Station on Windows
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#70">[ date ]</a>
+              <a href="thread.html#70">[ thread ]</a>
+              <a href="subject.html#70">[ subject ]</a>
+              <a href="author.html#70">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Il giorno Thu, 30/06/2011 alle 22.34 +0300, Maxim Jaffe ha scritto:
+&gt;<i> Thanks that worked :)!
+</I>&gt;<i> 
+</I>&gt;<i> Now I guess we start with a whole new set of problems :P.. a bit more
+</I>&gt;<i> exciting this time though..!
+</I>
+Maxim,
+that's great!
+
+&gt;<i> I managed to get some data out but think it comes out fragmented
+</I>&gt;<i> depending on how I do things... If I tell the station to start
+</I>&gt;<i> transferring before I press OK in the 'Total Open Station download'
+</I>&gt;<i> menu I get large part of the file be the beginning seems to be
+</I>&gt;<i> missing; if I press OK and only then tell the station to start the
+</I>&gt;<i> transfer I get I small set of data and then it stops; If I press again
+</I>&gt;<i> after that in both cases more data gets transferred.
+</I>&gt;<i> 
+</I>&gt;<i> I tried this with the GSI format and a few other formats (one of them
+</I>&gt;<i> was simply called 'relatorio' in portuguese, report in english, dunno
+</I>&gt;<i> if it is something a bit more simple).
+</I>&gt;<i> 
+</I>&gt;<i> Any advice on how to correctly transfer all the data?
+</I>
+This might be something wrong with our defaults for how much we wait
+between one ``read()`` and the following &#8210; e.g. see
+<A HREF="https://bitbucket.org/steko/totalopenstation/src/27a645a3158d/scripts/totalopenstation-gui.py#cl-706">https://bitbucket.org/steko/totalopenstation/src/27a645a3158d/scripts/totalopenstation-gui.py#cl-706</A>
+
+You might try changing the ``sleep()`` time to a smaller amount of
+seconds &#8210; if you have no idea of how to do it we can explain in more
+detail.
+
+&gt;<i> Secondly I tried out the 'process data' option (although didn't really
+</I>&gt;<i> expect much of a result since the model I use is not listed) and
+</I>&gt;<i> selected the older TCR model in the list, but the result only has some
+</I>&gt;<i> headers and no data.. I read a little bit about the GSI format on this
+</I>&gt;<i> page
+</I>&gt;<i> (<A HREF="http://www.intrasis.com/web_help_english/Admin/adminFilesGSI.htm">http://www.intrasis.com/web_help_english/Admin/adminFilesGSI.htm</A>)
+</I>&gt;<i> seems to be manageable, I'm guessing it is something you've come
+</I>&gt;<i> across before.
+</I>&gt;<i> 
+</I>&gt;<i> What is it really that the 'process data option' does? Is it simple to
+</I>&gt;<i> implement a new model for the 'process data' option..? I'd like to
+</I>&gt;<i> help in anyway I can with this..!
+</I>
+We would be happy if you could contribute to the development of TOPS
+with a new input format! The basic functionality of &quot;process data&quot; is
+very simple: it reads the original data and performs some filters until
+we get a standard representation of each data point.
+
+You can take a look at
+<A HREF="https://bitbucket.org/steko/totalopenstation/src/27a645a3158d/totalopenstation/formats/leica_tcr_705.py">https://bitbucket.org/steko/totalopenstation/src/27a645a3158d/totalopenstation/formats/leica_tcr_705.py</A>
+and the respective sample data in
+<A HREF="https://bitbucket.org/steko/totalopenstation/src/27a645a3158d/sample_data/leica_tcr_705">https://bitbucket.org/steko/totalopenstation/src/27a645a3158d/sample_data/leica_tcr_705</A> to have an idea.
+
+In fact, I have a bunch of GSI files on my hard disk, but I've never had
+the time to look at them: it should not be difficult to write an &quot;input
+parser&quot; for it.
+
+I won't be able to read my e-mail very often in the following weeks, but
+I'll do my best.
+
+Ciao
+steko
+
+-- 
+Stefano Costa
+<A HREF="http://www.iosa.it/">http://www.iosa.it/</A> Open Archaeology
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20110702/9151c5dc/attachment.pgp">https://lists.berlios.de/pipermail/tops-dev/attachments/20110702/9151c5dc/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000071.html">[tops-dev] Total Open Station on Windows
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#70">[ date ]</a>
+              <a href="thread.html#70">[ thread ]</a>
+              <a href="subject.html#70">[ subject ]</a>
+              <a href="author.html#70">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

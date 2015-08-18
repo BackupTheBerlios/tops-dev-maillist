@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] [PATCH] Add support for Leica TCR 705
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20%5BPATCH%5D%20Add%20support%20for%20Leica%20TCR%20705&In-Reply-To=%3C1b9bb4e3de8cab37e222.1241469620%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000006.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] [PATCH] Add support for Leica TCR 705</H1>
+    <B>Stefano Costa</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20%5BPATCH%5D%20Add%20support%20for%20Leica%20TCR%20705&In-Reply-To=%3C1b9bb4e3de8cab37e222.1241469620%40localhost.localdomain%3E"
+       TITLE="[tops-dev] [PATCH] Add support for Leica TCR 705">steko at iosa.it
+       </A><BR>
+    <I>Mon May  4 22:40:20 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000006.html">[tops-dev] [PATCH] Added leica tcr 705 sample data and	parser/exporter
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#8">[ date ]</a>
+              <a href="thread.html#8">[ thread ]</a>
+              <a href="subject.html#8">[ subject ]</a>
+              <a href="author.html#8">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE># HG changeset patch
+# User Luca Bianconi &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">luxetluc at yahoo.it</A>&gt;
+# Date 1241466772 -7200
+# Node ID 1b9bb4e3de8cab37e22258754050a0502e7f11c8
+# Parent  7dceb68353033fdeaf0f1e7240db7ed6a741a656
+Add support for Leica TCR 705.
+
+Thanks Anna Hodgkinson and Univ. Liverpool.
+
+diff -r 7dceb6835303 -r 1b9bb4e3de8c models/leica_tcr_705.py
+--- /dev/null	Thu Jan 01 00:00:00 1970 +0000
++++ b/models/leica_tcr_705.py	Mon May 04 21:52:52 2009 +0200
+@@ -0,0 +1,54 @@
++#! /usr/bin/env python
++# -*- coding: utf-8 -*-
++# filename: leica_tcr_705.py
++# Copyright 2009 Luca Bianconi &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">luxetluc at yahoo.it</A>&gt;
++# Copyright 2009 Stefano Costa &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">steko at iosa.it</A>&gt;
++# Under the GNU GPL 3 License
++
++from generic import *
++
++
++class ModelConnector(Connector):
++    def __init__(self, port):
++        Connector.__init__(self, port=port, baudrate=19200)
++
++
++class ModelParser(Parser):
++    
++    def is_point(self,line):
++        
++        tokens = line.split(&quot;,&quot;)
++        is_point = True
++	
++        try:
++
++            float(tokens[1])
++            float(tokens[2])
++            float(tokens[3])
++	    
++	    
++        except (ValueError, IndexError):
++            is_point = False
++	    
++        #else:
++            #di questo controllo che segue FORSE non gliene frega un beliscimu
++            #if tokens[4]==&quot;MEAS&quot;:
++            #    is_point = True
++            #else:
++            #    is_point = False
++        
++        return is_point
++        
++    def get_point(self,line):
++        
++        tokens = line.split(&quot;,&quot;)
++        
++        if len(tokens)&gt; 4:
++            text = str(tokens[4])
++        else:
++            text = &quot;&quot;
++        
++        p = Point(str(tokens[0]), float(tokens[1]), float(tokens[2]), float(tokens[3]), text)
++	
++        return p
++
+diff -r 7dceb6835303 -r 1b9bb4e3de8c models/models.py
+--- a/models/models.py	Tue Mar 24 09:31:43 2009 +0100
++++ b/models/models.py	Mon May 04 21:52:52 2009 +0200
+@@ -1,14 +1,15 @@
+ #! /usr/bin/env python
+ # -*- coding: utf-8 -*-
+ # filename: models.py
+-# Copyright 2008 Luca Bianconi &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">luxetluc at yahoo.it</A>&gt;
+-# Copyright 2008 Stefano Costa &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">steko at iosa.it</A>&gt;
++# Copyright 2009 Luca Bianconi &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">luxetluc at yahoo.it</A>&gt;
++# Copyright 2009 Stefano Costa &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">steko at iosa.it</A>&gt;
+ # Under the GNU GPL 3 License
+ 
+ models = {
+     'Leica TCR 1205' : 'leica_tcr_1205',
+     'Zeiss Elta R55' : 'zeiss_elta_r55',
+     'Nikon Npl 350' : 'nikon_npl_350',
++    'Leica TCR 705' : 'leica_tcr_705',
+     'Custom' : 'generic'
+     }
+ 
+diff -r 7dceb6835303 -r 1b9bb4e3de8c sample_data/leica_tcr_705
+--- /dev/null	Thu Jan 01 00:00:00 1970 +0000
++++ b/sample_data/leica_tcr_705	Mon May 04 21:52:52 2009 +0200
+@@ -0,0 +1,112 @@
++Oxford Archaeology Survey.
++ 
++JOB      SCRAS01
++OPERATOR     MB
++DATE 08/02/05
++INS. NO.    656205
++INS. TYPE.    TCR705
++
++
++SETUP SN      1000
++IH     0.000
++
++Orientation Station          0
++- - - - - - - - - - - - - - - - - - -
++       100,    999.630,   1002.620,     98.406, WALL01 --------
++       101,   1002.825,    999.529,     98.430, WALL01 --------
++       102,   1000.723,    997.323,     98.437, WALL01 --------
++       103,    997.506,   1000.438,     98.402, WALL01 --------
++       104,    998.095,   1001.082,     98.404, WALL01 --------
++       105,    997.298,   1001.882,     98.366, WALL01 --------
++       106,    998.144,   1002.739,     98.361, WALL01 --------
++       107,    998.964,   1001.987,     98.376, WALL01 --------
++      1001,       1.00,       1.00,       1.00, WALL01 --------
++       101,       1.00,       1.00,       1.00, WALL01 --------
++       105,       1.00,       1.00,       1.00, WALL01 --------
++       106,       1.00,       1.00,       1.00, WALL01 --------
++       107,       1.00,       1.00,       1.00, WALL01 --------
++
++SETUP SN      1002
++IH     0.000
++
++Orientation Station        105
++- - - - - - - - - - - - - - - - - - -
++       105,       1.00,       1.00,       1.00, WALL01 --------
++       106,       1.00,       1.00,       1.00, WALL01 --------
++       107,       1.00,       1.00,       1.00, WALL01 --------
++      1001,       1.00,       1.00,       1.00, WALL01 --------
++      1001,       1.00,       1.00,       1.00, WALL01 --------
++       105,       1.00,       1.00,       1.00, WALL01 --------
++       106,       1.00,       1.00,       1.00, WALL01 --------
++       106,       1.00,       1.00,       1.00, WALL01 --------
++       106,       1.00,       1.00,       1.00, WALL01 --------
++       106,       1.00,       1.00,       1.00, WALL01 --------
++       107,       1.00,       1.00,       1.00, WALL01 --------
++
++SETUP SN      1003
++IH     0.000
++
++Orientation Station        105
++- - - - - - - - - - - - - - - - - - -
++       107,       1.00,       1.00,       1.00, WALL01 --------
++       106,       1.00,       1.00,       1.00, WALL01 --------
++       103,       1.00,       1.00,       1.00, WALL01 --------
++       103,       1.00,       1.00,       1.00, WALL01 --------
++       107,       1.00,       1.00,       1.00, WALL01 --------
++      1001,       1.00,       1.00,       1.00, WALL01 --------
++       110,    998.284,   1001.291,     98.372, WALL01 --------
++       111,    997.428,   1002.145,     98.362, WALL01 --------
++       112,    997.428,   1002.145,     98.361, WALL01 --------
++       113,    996.782,   1001.499,     98.399, WALL01 --------
++       114,    993.626,   1004.658,     98.478, WALL01 --------
++       115,    997.102,   1008.034,     98.420, WALL01 --------
++       116,   1000.490,   1004.700,     98.335, WALL01 --------
++       117,    999.403,   1004.069,     98.341, WALL01 --------
++       118,    998.309,   1003.011,     98.356, WALL01 --------
++       119,    999.094,   1002.199,     98.365, WALL01 --------
++       120,   1000.812,    997.443,     98.412, WALL01 --------
++       112,       1.00,       1.00,       1.00, WALL01 --------
++       112,       1.00,       1.00,       1.00, WALL01 --------
++       114,       1.00,       1.00,       1.00, WALL01 --------
++       115,       1.00,       1.00,       1.00, WALL01 --------
++
++SETUP SN      1004
++IH     0.000
++
++Orientation Station        114
++- - - - - - - - - - - - - - - - - - -
++       121,   1000.480,   1004.705,     98.336, WALL03 --------
++       122,   1003.504,   1001.709,     95.307, WALL03 --------
++       123,   1002.440,   1001.125,     95.557, WALL03 --------
++       124,   1002.772,   1000.716,     95.230, WALL03 --------
++       125,    999.646,   1003.845,     98.358, WALL03 --------
++       126,    999.422,   1004.066,     98.357, WALL03 --------
++       127,   1004.293,   1000.955,     95.362, WALL03 --------
++       128,   1001.149,   1004.006,    100.368, WALL03 --------
++       129,   1000.236,   1003.246,    100.270, WALL03 --------
++       130,   1001.070,   1004.095,    100.267, WALL03 --------
++       127,       1.00,       1.00,       1.00, WALL03 --------
++       130,       1.00,       1.00,       1.00, WALL03 --------
++       129,       1.00,       1.00,       1.00, WALL03 --------
++
++SETUP SN      1004
++IH     0.000
++
++Orientation Station        130
++- - - - - - - - - - - - - - - - - - -
++       140,   1000.274,   1003.227,    100.365, WALL04 --------
++       141,   1001.112,   1004.038,    100.342, WALL04 --------
++       142,   1002.522,   1000.962,     96.505, WALL04 --------
++       143,   1003.386,   1001.847,     95.304, WALL04 --------
++       144,   1004.245,   1000.981,     95.842, WALL04 --------
++       145,   1002.963,    999.685,     95.974, WALL04 --------
++       146,   1002.118,   1000.557,     96.021, WALL04 --------
++       147,   1001.995,    998.707,     95.509, WALL04 --------
++       148,   1000.786,    997.542,     95.212, WALL04 --------
++        T1,   1002.324,    998.364,     96.479, WALL04 --------
++        T2,   1003.759,   1000.497,     96.586, WALL04 --------
++        T3,   1001.766,    998.503,     96.475, WALL04 --------
++        T4,   1001.972,    998.705,     96.932, WALL04 --------
++
++File End.
++
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000006.html">[tops-dev] [PATCH] Added leica tcr 705 sample data and	parser/exporter
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#8">[ date ]</a>
+              <a href="thread.html#8">[ thread ]</a>
+              <a href="subject.html#8">[ subject ]</a>
+              <a href="author.html#8">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

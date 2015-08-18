@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] [PATCH 2 of 3] generic.py: more abstract methods
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20%5BPATCH%202%20of%203%5D%20generic.py%3A%20more%20abstract%20methods&In-Reply-To=%3C80e196713e23006d2748.1241123278%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000005.html">
+   <LINK REL="Next"  HREF="000004.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] [PATCH 2 of 3] generic.py: more abstract methods</H1>
+    <B>Stefano Costa</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20%5BPATCH%202%20of%203%5D%20generic.py%3A%20more%20abstract%20methods&In-Reply-To=%3C80e196713e23006d2748.1241123278%40localhost.localdomain%3E"
+       TITLE="[tops-dev] [PATCH 2 of 3] generic.py: more abstract methods">steko at iosa.it
+       </A><BR>
+    <I>Thu Apr 30 22:27:58 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000005.html">[tops-dev] [PATCH 1 of 3] Cosmetic changes, bump copyright year
+</A></li>
+        <LI>Next message: <A HREF="000004.html">[tops-dev] [PATCH 3 of 3] Add support and sample data for Trimble	AREA input	format
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3">[ date ]</a>
+              <a href="thread.html#3">[ thread ]</a>
+              <a href="subject.html#3">[ subject ]</a>
+              <a href="author.html#3">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> models/generic.py |  27 ++++++++++++++++++++++++---
+ 1 files changed, 24 insertions(+), 3 deletions(-)
+
+
+# HG changeset patch
+# User Stefano Costa &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">steko at iosa.it</A>&gt;
+# Date 1241096252 -7200
+# Node ID 80e196713e23006d274809c1bba3b3768355b476
+# Parent  49d534cf05412977614a9bf4e3059dd29dc4878f
+generic.py: more abstract methods.
+
+Enables us to include a new Trimble parser.
+
+diff -r 49d534cf0541 -r 80e196713e23 models/generic.py
+--- a/models/generic.py	Tue Mar 24 22:03:36 2009 +0100
++++ b/models/generic.py	Thu Apr 30 14:57:32 2009 +0200
+@@ -92,16 +92,37 @@
+     
+     def __init__(self, data, swapXY=False):
+         
+-        self.d = data.splitlines()
++        self.data = data
++        self.d = self.split_points()
+         self.swapXY = swapXY
+-        
++
+         valid_lines = filter(self.is_point, self.d)
+         fg_lines = map(self.get_point, valid_lines)
+         self.points = [ p.tuplepoint for p in fg_lines if p is not None ]
+-    
++
+     def is_point(self):
++        &quot;&quot;&quot;Action for finding which parts of the source file are points.
++
++        This method **must** be overridden in the child class
++        to have a working parser.&quot;&quot;&quot;
++
+         pass
+     
+     def get_point(self):
++        &quot;&quot;&quot;Action for getting points from source file.
++
++        This method **must** be overridden in the child class
++        to have a working parser.&quot;&quot;&quot;
++
+         pass
+ 
++    def split_points(self):
++        &quot;&quot;&quot;Action for splitting points.
++
++        Defaults to ``splitlines()`` because most formats have one
++        point per line.
++
++        Override this method if the format is different.&quot;&quot;&quot;
++
++        return self.data.splitlines()
++
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000005.html">[tops-dev] [PATCH 1 of 3] Cosmetic changes, bump copyright year
+</A></li>
+	<LI>Next message: <A HREF="000004.html">[tops-dev] [PATCH 3 of 3] Add support and sample data for Trimble	AREA input	format
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3">[ date ]</a>
+              <a href="thread.html#3">[ thread ]</a>
+              <a href="subject.html#3">[ subject ]</a>
+              <a href="author.html#3">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

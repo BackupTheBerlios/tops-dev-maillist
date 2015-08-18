@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] Serial Exception: could not open port COM4: [Error 5]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Serial%20Exception%3A%20could%20not%20open%20port%20COM4%3A%20%5BError%205%5D&In-Reply-To=%3CCOL111-W230D60281C3AD9A8E2293A8E630%40phx.gbl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000046.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] Serial Exception: could not open port COM4: [Error 5]</H1>
+    <B>Maxim Jaffe</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Serial%20Exception%3A%20could%20not%20open%20port%20COM4%3A%20%5BError%205%5D&In-Reply-To=%3CCOL111-W230D60281C3AD9A8E2293A8E630%40phx.gbl%3E"
+       TITLE="[tops-dev] Serial Exception: could not open port COM4: [Error 5]">maxim_jaffe at hotmail.com
+       </A><BR>
+    <I>Tue Jun  7 17:09:58 CEST 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000046.html">[tops-dev] Serial Exception: could not open port COM4: [Error 5]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#45">[ date ]</a>
+              <a href="thread.html#45">[ thread ]</a>
+              <a href="subject.html#45">[ subject ]</a>
+              <a href="author.html#45">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Hello everyone, first time posting here! Hope you can help me
+
+I'm using TOPS on Windows XP, with Python 2.5.2 installed, to download data from a Leica TCR 407 but can seem to connect to the device. Since the model is not one of the options available used the custom option and specified everything based on what the devices manual says:
+
+Baud rate: 19200
+Bytesize: 8
+Parity setting: N
+Stop bit: 1
+
+Im using a usb to serial cable with all the necessary drivers installed and the COM port shows up in the device manager as COM4.
+
+The output message from the gui is:
+
+could not open port COM4: [Error 5] Acesso negado.
+
+N.B. &quot;Acesso negado&quot; is portuguese for &quot;Access denied&quot;
+
+The command prompt outputs the following:
+
+
+
+Exception in Tkinter callback
+
+Traceback (most recent call last):
+
+  File &quot;C:\Python25\lib\lib-tk\Tkinter.py&quot;, line 1403, in __call__
+
+    return self.func(*args)
+
+  File &quot;C:\Python25\Scripts\totalopenstation-gui.py&quot;, line 662, in connect_action
+
+    TOPSerial.open()
+
+  File &quot;C:\Python25\Lib\site-packages\serial\serialwin32.py&quot;, line 56, in open
+
+    raise SerialException(&quot;could not open port %s: %s&quot; % (self.portstr, ctypes.WinError()))
+
+SerialException: could not open port COM4: [Error 5] Acesso negado.
+
+Ive tried another proprietary software to connect to it and it seems find and even tried Hyperterminal and although I don't really know how to use it, seems like something happens since the device turns on and beeps when I tried to echo something.
+
+Tried closing all programs I can concieve would be using this port and it still doesn't work. Also tried enabling and disabling it on the device manager (although I admit I didn't try to restart the computer) and the sitaution is the same
+
+I read some posts about the error that seems to be associated with the pyserial module. I noticed some mentioned something about trouble with the code related to the funcitons ser.close() and ser.open(), even looked up those on the code of the TOPS scripts but couldn't really figure out where those functions could be, and not really sure what I would do even if I did.
+
+Also saw someone mention something about the versions of both pyserial and setuptools modules, I installed the ones indicated for version 2.5 of Python on the links redirected from the TOPS site.
+
+Anyways only understand vaguely most of these things related to serial ports, python and such but tried to get as much info as I could about the error so you could help me..!
+
+On a short note working for the archeological NGO FUMDHAM in Piau&#237;, Brazil and we are trying out open source software alternatives for our cartography and topography sections.
+
+Thanks in advance!
+
+Maxim Jaffe
+
+
+ 		 	   		  
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20110607/7411e3a8/attachment.html">https://lists.berlios.de/pipermail/tops-dev/attachments/20110607/7411e3a8/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000046.html">[tops-dev] Serial Exception: could not open port COM4: [Error 5]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#45">[ date ]</a>
+              <a href="thread.html#45">[ thread ]</a>
+              <a href="subject.html#45">[ subject ]</a>
+              <a href="author.html#45">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

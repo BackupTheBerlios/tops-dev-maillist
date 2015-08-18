@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] Issues with TOPS on Windows XP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Issues%20with%20TOPS%20on%20Windows%20XP&In-Reply-To=%3C1320760844.11063.15.camel%40gibreel.funaioli.unisi.it%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000080.html">
+   <LINK REL="Next"  HREF="000081.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] Issues with TOPS on Windows XP</H1>
+    <B>Stefano Costa</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Issues%20with%20TOPS%20on%20Windows%20XP&In-Reply-To=%3C1320760844.11063.15.camel%40gibreel.funaioli.unisi.it%3E"
+       TITLE="[tops-dev] Issues with TOPS on Windows XP">steko at iosa.it
+       </A><BR>
+    <I>Tue Nov  8 15:00:44 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000080.html">[tops-dev] Issues with TOPS on Windows XP
+</A></li>
+        <LI>Next message: <A HREF="000081.html">[tops-dev] Issues with TOPS on Windows XP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#82">[ date ]</a>
+              <a href="thread.html#82">[ thread ]</a>
+              <a href="subject.html#82">[ subject ]</a>
+              <a href="author.html#82">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Il giorno mar, 08/11/2011 alle 13.45 +0000, Anna Hodgkinson ha scritto:
+&gt;<i> 
+</I>&gt;<i> I installed TOPS on my Windows XP 32bit work machine yesterday and
+</I>&gt;<i> came across a few issues, mainly serial port-related by the looks:
+</I>
+Hi Anna,
+first of all big, big apologies for not getting back to your request
+last month (or was it even September?).
+
+Just yesterday I translated to English a step-by-step guide that covers
+the installation of TOPS on Windows. You can find it at
+<A HREF="https://bitbucket.org/steko/totalopenstation/wiki/InstallingOnWindows">https://bitbucket.org/steko/totalopenstation/wiki/InstallingOnWindows</A>
+and I have tested it on 3 Windows XP machines (including a tablet PC).
+
+Other installation procedures might not be correct. Especially, pySerial
+2.5 (that is, the latest version that you get by default when
+downloading) has a bug on Windows and it doesn't work properly. This has
+been the cause of many headaches until I realised that 2.4 works like a
+charm.
+
+Before going into detailed debugging of the problem you're facing, I
+would like to ask you to start over with that procedure (possibly
+including installing a newer Python interpreter &#8210; you will find links
+for that too in the guide).
+
+&gt;<i> I would be grateful if someone could send me some sample data that can
+</I>&gt;<i> be imported into TOPS, by the way, preferably some survey daya with
+</I>&gt;<i> lines and / or polygons - I would like to export a dxf from TOPS and
+</I>&gt;<i> see if the line data comes through. 
+</I>&gt;<i> Stefano, you mentioned a possibility of exporting data from TOPS
+</I>&gt;<i> without having to use the DXF2SHP converter in Qgis - I would be
+</I>&gt;<i> interested to know what is done instead.
+</I>
+You can get some sample data here
+<A HREF="https://bitbucket.org/steko/totalopenstation/src/9609c1e38c14/sample_data">https://bitbucket.org/steko/totalopenstation/src/9609c1e38c14/sample_data</A> &#8210; I have some more data from Nikon and Leica devices.
+
+The total station I'm working with has no support for lines and/or
+polygons, just bare points, so I've never looked into creating them from
+the raw data. But it's definitely possible to enhance the TOPS parser to
+take it into account.
+
+Exporting data from TOPS straight into QGIS is possible if you install
+the &quot;geojson&quot; Python package <A HREF="http://pypi.python.org/pypi/geojson/">http://pypi.python.org/pypi/geojson/</A> (no
+Windows installer though, I'm afraid). Then, a new output format becomes
+available and it's OGR-compatible: QGIS can open GeoJSON data saved into
+a plain text file.
+
+Ciao,
+Stefano
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000080.html">[tops-dev] Issues with TOPS on Windows XP
+</A></li>
+	<LI>Next message: <A HREF="000081.html">[tops-dev] Issues with TOPS on Windows XP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#82">[ date ]</a>
+              <a href="thread.html#82">[ thread ]</a>
+              <a href="subject.html#82">[ subject ]</a>
+              <a href="author.html#82">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

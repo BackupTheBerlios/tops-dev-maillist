@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] [PATCH 0 of 3] Trimble support
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20%5BPATCH%200%20of%203%5D%20Trimble%20support&In-Reply-To=%3Cpatchbomb.1241123276%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000005.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] [PATCH 0 of 3] Trimble support</H1>
+    <B>Stefano Costa</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20%5BPATCH%200%20of%203%5D%20Trimble%20support&In-Reply-To=%3Cpatchbomb.1241123276%40localhost.localdomain%3E"
+       TITLE="[tops-dev] [PATCH 0 of 3] Trimble support">steko at iosa.it
+       </A><BR>
+    <I>Thu Apr 30 22:27:56 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000005.html">[tops-dev] [PATCH 1 of 3] Cosmetic changes, bump copyright year
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2">[ date ]</a>
+              <a href="thread.html#2">[ thread ]</a>
+              <a href="subject.html#2">[ subject ]</a>
+              <a href="author.html#2">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+ totalopenstation-cli-parser.py       |    21 +-
+ totalopenstation-gui.py              |    82 ++++++--
+ models/generic.py                    |    27 ++-
+ models/models.py                     |     1 +
+ models/trimble.py                    |    48 ++++
+ sample_data/trimble/BSG-08-11-19.are |  1101 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 6 files changed, 1253 insertions(+), 27 deletions(-)
+
+Hi,
+today I've done some preliminary work on the Trimble area format.
+
+Before that, I've also added a new method to the Parser class,
+because we were previously giving for granted that each point was
+described in just one line.
+
+Please check against current default, then I can push this.
+
+Steko
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000005.html">[tops-dev] [PATCH 1 of 3] Cosmetic changes, bump copyright year
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2">[ date ]</a>
+              <a href="thread.html#2">[ thread ]</a>
+              <a href="subject.html#2">[ subject ]</a>
+              <a href="author.html#2">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

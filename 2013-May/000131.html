@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] RW5 and welcome to Filip
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20RW5%20and%20welcome%20to%20Filip&In-Reply-To=%3Cc4a02d1f82822931f2fcd70e925d411f%40beep.pl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000130.html">
+   <LINK REL="Next"  HREF="000132.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] RW5 and welcome to Filip</H1>
+    <B>filip at geoida.pl</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20RW5%20and%20welcome%20to%20Filip&In-Reply-To=%3Cc4a02d1f82822931f2fcd70e925d411f%40beep.pl%3E"
+       TITLE="[tops-dev] RW5 and welcome to Filip">filip at geoida.pl
+       </A><BR>
+    <I>Sat May  4 16:18:28 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000130.html">[tops-dev] RW5 and welcome to Filip
+</A></li>
+        <LI>Next message: <A HREF="000132.html">[tops-dev] commit/totalopenstation: 4 new changesets
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#131">[ date ]</a>
+              <a href="thread.html#131">[ thread ]</a>
+              <a href="subject.html#131">[ subject ]</a>
+              <a href="author.html#131">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>W dniu 2013-05-03 19:43, Stefano Costa napisa&#322;(a):
+&gt;<i> Hello TOPS community,
+</I>&gt;<i> first of all I want to welcome Filip, who has been providing really
+</I>&gt;<i> valuable input on the issue of Leica DBX data (see here
+</I>&gt;<i> <A HREF="https://bitbucket.org/steko/totalopenstation/issue/38/">https://bitbucket.org/steko/totalopenstation/issue/38/</A> and
+</I>&gt;<i> <A HREF="https://bitbucket.org/steko/totalopenstation/issue/33/">https://bitbucket.org/steko/totalopenstation/issue/33/</A> for more 
+</I>&gt;<i> details)
+</I>&gt;<i> and, most interestingly, is helping with the development of a new 
+</I>&gt;<i> module
+</I>&gt;<i> to support the RW5 format used by the Carlson SurvCE software. 
+</I>&gt;<i> Needless
+</I>&gt;<i> to say, if anyone has any experience with this format and/or special
+</I>&gt;<i> requirements with regard to its features, please let us know!
+</I>&gt;<i> 
+</I>&gt;<i> All the best
+</I>&gt;<i> steko
+</I>
+
+Hello Stefano, TOPS community,
+
+First, I would like to thank you for invitation.
+My name is Filip Klosowski and I'm from Poland.
+I would be very glad if I could be helpful in any way.
+
+Now, I'd like to provide some useful, at this point, general RW5 info 
+just to consider.
+Since Carslon SurvCE is rather external data collector multifunctional 
+software and only rarely total station onboard,it is important from the 
+start to be aware of:
+- sometimes, single RW5 job file may comprise mixed data, collected by 
+TS, GPS and even Level
+- what kind of data conversion would be useful to end user or which 
+records are importatnt for TOPS
+- there are two or even three variants of RW5 file, Carlson's one, 
+so-called TDS RW5 [created by Tripod Data Systems, a company 
+subsequently incorporated to Trimble] and possibly Microsurvey's one - 
+it is believed to be
+identical as TDS RW5 but some converters, like Leica X-change, list all 
+three variants.
+<A HREF="http://www.microsurvey.com/support/fieldgenius/documentation/TDSRawDataSpec.pdf">http://www.microsurvey.com/support/fieldgenius/documentation/TDSRawDataSpec.pdf</A>
+...so maybe just to write TOPS module to handle both types [or three].
+
+Finally, I'd like to ask what method of parsing RW5 file, you think, is 
+right?
+In my testing converter I utilized pyparsing
+<A HREF="https://pypi.python.org/pypi/pyparsing/2.0.0">https://pypi.python.org/pypi/pyparsing/2.0.0</A>
+
+Best regards
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000130.html">[tops-dev] RW5 and welcome to Filip
+</A></li>
+	<LI>Next message: <A HREF="000132.html">[tops-dev] commit/totalopenstation: 4 new changesets
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#131">[ date ]</a>
+              <a href="thread.html#131">[ thread ]</a>
+              <a href="subject.html#131">[ subject ]</a>
+              <a href="author.html#131">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

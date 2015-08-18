@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] Issues with TOPS on Windows XP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Issues%20with%20TOPS%20on%20Windows%20XP&In-Reply-To=%3CCAPb4CESzHWMpNVrkBV_b-iBWhLUow6uxS0SHdjZES_Loftx11Q%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000090.html">
+   <LINK REL="Next"  HREF="000086.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] Issues with TOPS on Windows XP</H1>
+    <B>Anna Hodgkinson</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Issues%20with%20TOPS%20on%20Windows%20XP&In-Reply-To=%3CCAPb4CESzHWMpNVrkBV_b-iBWhLUow6uxS0SHdjZES_Loftx11Q%40mail.gmail.com%3E"
+       TITLE="[tops-dev] Issues with TOPS on Windows XP">hodgkinson.anna at gmail.com
+       </A><BR>
+    <I>Tue Nov 22 14:49:44 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000090.html">[tops-dev] Issues with TOPS on Windows XP
+</A></li>
+        <LI>Next message: <A HREF="000086.html">[tops-dev] commit/totalopenstation: steko: [setup] Remove old	distribute-related code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#91">[ date ]</a>
+              <a href="thread.html#91">[ thread ]</a>
+              <a href="subject.html#91">[ subject ]</a>
+              <a href="author.html#91">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Steko,
+
+Cool, glad to help! :-)
+
+Yes, on the total station I select &quot;AutoCAD (dxf)&quot; as output format, then I
+can see numbers in TOPS, but still get the stopbit issue, as previously
+reported, although I use the same settings. Then I do &quot;Save raw data&quot;,
+navigate to wherever I want to save it to, and then name the file and give
+it the .dxf extension. That one I then process using dxf2shp in QGIS. I
+haven't tested the geojson app on Ubuntu yet. I am looking at everything on
+Windows because at OA most people use Windows, that's the issue. I will try
+it on Ubuntu in a bit, though. I choose DXF as output format because I want
+to make sure it's the same coming out of the total station and out of TOPS,
+but maybe GSI would be better as total station output.
+
+Yes, the GSI8 parser exists in Survey Tools. I really want  to try it, the
+problem is, though, that I always get an error when I select my input GSI,
+saying &quot;Keine Stationszeile gefunden&quot; - I think this means that it needs
+station information, or maybe a header row in the data table? I'm really
+not sure (even as a native german speaker...).
+
+Good to know about the line data - that would be most useful and it might -
+right now - be the reason not so many people would be keen to test TOPS
+here, as it takes extra processing time. Do you know if the geojson app
+deals with it differently?
+
+Many thanks and all the best,
+
+Anna
+
+
+On 22 November 2011 13:14, Stefano Costa &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">steko at iosa.it</A>&gt; wrote:
+
+&gt;<i> Il giorno mar, 22/11/2011 alle 11.07 +0000, Anna Hodgkinson ha scritto:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I have now had a chance to test your methodology of installing TOPS on
+</I>&gt;<i> &gt; Windows and it works!
+</I>&gt;<i>
+</I>&gt;<i> Anna, thanks a lot! With this successful installation I give the
+</I>&gt;<i> existing instructions as working. I will move them from the wiki to the
+</I>&gt;<i> main documentation site and then release the current TOPS version as
+</I>&gt;<i> 0.3.
+</I>&gt;<i>
+</I>&gt;<i> This is a big step forward, our first proper release, so let's party! :)
+</I>&gt;<i>
+</I>&gt;<i> Now to the real stuff:
+</I>&gt;<i>
+</I>&gt;<i> &gt; My problem is that I still can't get line data off the machine:
+</I>&gt;<i> &gt; I send the data off the total station (Leica TCR805, works with the
+</I>&gt;<i> &gt; TCR705 parser) in AutoCAD (dxf) format. Then I save the data as .dxf.
+</I>&gt;<i> &gt; When I use the dxf2shp converter in Windows I still only get points,
+</I>&gt;<i> &gt; no lines.
+</I>&gt;<i> &gt; What format should I export as / save in, in order to get line data?
+</I>&gt;<i> &gt; GSI?
+</I>&gt;<i>
+</I>&gt;<i> Do I understand correctly that you download the data without problems
+</I>&gt;<i> (i.e. you can see the transferred data in the text area box)? If so, and
+</I>&gt;<i> if you're getting a DXF file straight from the total station, make sure
+</I>&gt;<i> you save it directly and not through the &quot;Process&quot; dialog (that means
+</I>&gt;<i> using &quot;Save data&quot;). DXF is not good for being processed, by the way. GSI
+</I>&gt;<i> instead is what we should aim to support (but we don't support it yet).
+</I>&gt;<i>
+</I>&gt;<i> Maybe my previous e-mails on this topic were confusing, but at the
+</I>&gt;<i> moment TOPS cannot process line data. This is one of our targets for
+</I>&gt;<i> 0.4. It would be fantastic if you could assist us in developing this new
+</I>&gt;<i> functionality, both providing us with raw data (in GSI format) and
+</I>&gt;<i> testing the program.
+</I>&gt;<i>
+</I>&gt;<i> Ciao,
+</I>&gt;<i> steko
+</I>&gt;<i>
+</I>&gt;<i> PS it might be interesting that the SurveyTools plugin for QGIS
+</I>&gt;<i> <A HREF="http://www.catais.org/qgis/plugins.xml">http://www.catais.org/qgis/plugins.xml</A> by Stefan Ziegler incorporates a
+</I>&gt;<i> GSI8 parser. Last year Stefan and I discussed general plans for merging
+</I>&gt;<i> SurveyTools and TOPS in a single codebase (leaving the QGIS plugin
+</I>&gt;<i> separate from the backend), but we never had the time and energy to do
+</I>&gt;<i> it. Still, the code is there and could be easily adapted to fit the TOPS
+</I>&gt;<i> architecture.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+
+-- 
+Anna Kathrin Hodgkinson
+PhD student
+School of Archaeology, Classics and Egyptology
+Liverpool University
+
+Archaeologist and Surveyor
+Gurob Harem Palace Project
+www.gurob.org.uk
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20111122/b146c0d5/attachment.html">https://lists.berlios.de/pipermail/tops-dev/attachments/20111122/b146c0d5/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000090.html">[tops-dev] Issues with TOPS on Windows XP
+</A></li>
+	<LI>Next message: <A HREF="000086.html">[tops-dev] commit/totalopenstation: steko: [setup] Remove old	distribute-related code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#91">[ date ]</a>
+              <a href="thread.html#91">[ thread ]</a>
+              <a href="subject.html#91">[ subject ]</a>
+              <a href="author.html#91">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

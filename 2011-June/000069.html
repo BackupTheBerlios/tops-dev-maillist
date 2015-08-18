@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev]  FW:  TOPS installation under OpenSuse
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20%20FW%3A%20%20TOPS%20installation%20under%20OpenSuse&In-Reply-To=%3Ccol111-w593D8217C445640ADBC3F08E580%40phx.gbl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000068.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev]  FW:  TOPS installation under OpenSuse</H1>
+    <B>Maxim Jaffe</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20%20FW%3A%20%20TOPS%20installation%20under%20OpenSuse&In-Reply-To=%3Ccol111-w593D8217C445640ADBC3F08E580%40phx.gbl%3E"
+       TITLE="[tops-dev]  FW:  TOPS installation under OpenSuse">maxim_jaffe at hotmail.com
+       </A><BR>
+    <I>Thu Jun 30 21:34:12 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000068.html">[tops-dev] FW:  TOPS installation under OpenSuse
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#69">[ date ]</a>
+              <a href="thread.html#69">[ thread ]</a>
+              <a href="subject.html#69">[ subject ]</a>
+              <a href="author.html#69">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Thanks that worked :)!
+
+Now I guess we start with a whole new set of problems :P.. a bit more exciting this time though..!
+
+I managed to get some data out but think it comes out fragmented depending on how I do things... If I tell the station to start transferring before I press OK in the 'Total Open Station download' menu I get large part of the file be the beginning seems to be missing; if I press OK and only then tell the station to start the transfer I get I small set of data and then it stops; If I press again after that in both cases more data gets transferred.
+
+I tried this with the GSI format and a few other formats (one of them was simply called 'relatorio' in portuguese, report in english, dunno if it is something a bit more simple).
+
+Any advice on how to correctly transfer all the data? Secondly I tried out the 'process data' option (although didn't really expect much of a result since the model I use is not listed) and selected the older TCR model in the list, but the result only has some headers and no data.. I read a little bit about the GSI format on this page (<A HREF="http://www.intrasis.com/web_help_english/Admin/adminFilesGSI.htm">http://www.intrasis.com/web_help_english/Admin/adminFilesGSI.htm</A>) seems to be manageable, I'm guessing it is something you've come across before.
+
+What is it really that the 'process data option' does? Is it simple to implement a new model for the 'process data' option..? I'd like to help in anyway I can with this..!
+
+Cheers for everything!
+
+Maxim
+
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">steko at iosa.it</A>
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">tops-dev at lists.berlios.de</A>
+Date: Thu, 30 Jun 2011 15:15:26 +0200
+Subject: Re: [tops-dev] FW:  TOPS installation under OpenSuse
+
+Il giorno Thu, 30/06/2011 alle 15.55 +0300, Maxim Jaffe ha scritto:
+&gt;<i> 
+</I>&gt;<i> Am I supposed to use something else rather then COM*..? 
+</I> 
+Yes, on GNU/Linux you usually get /dev/ttyUSB0 or something similar.
+ 
+You can run &quot;dmesg&quot; from a terminal right after you have plugged in the
+cable, and you should read the last lines of the output to see which
+virtual port was created.
+ 
+We have some plans to automatically detect ports at runtime, but it's
+still in the TODO list.
+ 
+Ciao,
+steko
+ 
+-- 
+Stefano Costa
+<A HREF="http://www.iosa.it/">http://www.iosa.it/</A> Open Archaeology
+
+_______________________________________________
+tops-dev mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">tops-dev at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">https://lists.berlios.de/mailman/listinfo/tops-dev</A> 		 	   		   		 	   		  
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20110630/b27cd2c7/attachment.html">https://lists.berlios.de/pipermail/tops-dev/attachments/20110630/b27cd2c7/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000068.html">[tops-dev] FW:  TOPS installation under OpenSuse
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#69">[ date ]</a>
+              <a href="thread.html#69">[ thread ]</a>
+              <a href="subject.html#69">[ subject ]</a>
+              <a href="author.html#69">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

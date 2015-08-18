@@ -1,0 +1,26 @@
+From commits-noreply at bitbucket.org  Sun Oct 13 00:02:34 2013
+From: commits-noreply at bitbucket.org (Bitbucket)
+Date: Sat, 12 Oct 2013 22:02:34 -0000
+Subject: [tops-dev] commit/totalopenstation: steko: Remove icon entry from
+ desktop spec, rename icons
+Message-ID: <20131012220234.31416.61207@app04.ash-private.bitbucket.org>
+
+1 new commit in totalopenstation:
+
+https://bitbucket.org/steko/totalopenstation/commits/1ecb4f39c8a5/
+Changeset:   1ecb4f39c8a5
+User:        steko
+Date:        2013-07-18 12:36:57
+Summary:     Remove icon entry from desktop spec, rename icons
+
+HT Volker Fr?hlich
+Affected #:  19 files
+
+Repository URL: https://bitbucket.org/steko/totalopenstation/
+
+--
+
+This is a commit notification from bitbucket.org. You are receiving
+this because you have the service enabled, addressing the recipient of
+this email.
+

@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] FW:  TOPS installation under OpenSuse
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20FW%3A%20%20TOPS%20installation%20under%20OpenSuse&In-Reply-To=%3CCOL111-W319E8525C9DC8BE71B341B8E580%40phx.gbl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000066.html">
+   <LINK REL="Next"  HREF="000068.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] FW:  TOPS installation under OpenSuse</H1>
+    <B>Maxim Jaffe</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20FW%3A%20%20TOPS%20installation%20under%20OpenSuse&In-Reply-To=%3CCOL111-W319E8525C9DC8BE71B341B8E580%40phx.gbl%3E"
+       TITLE="[tops-dev] FW:  TOPS installation under OpenSuse">maxim_jaffe at hotmail.com
+       </A><BR>
+    <I>Thu Jun 30 14:55:39 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000066.html">[tops-dev] FW:  TOPS installation under OpenSuse
+</A></li>
+        <LI>Next message: <A HREF="000068.html">[tops-dev] FW:  TOPS installation under OpenSuse
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#67">[ date ]</a>
+              <a href="thread.html#67">[ thread ]</a>
+              <a href="subject.html#67">[ subject ]</a>
+              <a href="author.html#67">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Hello once again!
+
+Thanks for looking out for a solution for windows. Meanwhile I'll keep on trying it out under OpenSuse ;).
+
+I tried the pip command once again but it still gives the previous error, so I gave a try to the source command and that seems to have worked fine, TOPS seems to run fine.
+
+Now I have a new problem, I'm not sure what to insert in the Port, I've tried COM1,2,3,4 (equivalent to number of usb slots). The serial to usb cable seems to be recognized I tried the lsusb command and have this output
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">possum at ljaffe3</A>:/&gt; lsusb
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 001 Device 002: ID 8087:0020  
+Bus 001 Device 003: ID 03f0:231d Hewlett-Packard 
+Bus 001 Device 004: ID 04f2:b15e Chicony Electronics Co., Ltd 
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 002: ID 8087:0020  
+Bus 002 Device 004: ID 067b:2303 Prolific Technology, Inc. PL2303 Serial Port
+
+Not really sure what to do.. I tried the serial.Serial('COM*') in the python terminal and get this result
+
+&gt;&gt;&gt;<i> serial.Serial('COM1')
+</I>Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;/usr/lib/python2.6/site-packages/serial/serialutil.py&quot;, line 260, in __init__
+    self.open()
+  File &quot;/usr/lib/python2.6/site-packages/serial/serialposix.py&quot;, line 276, in open
+    raise SerialException(&quot;could not open port %s: %s&quot; % (self._port, msg))
+serial.serialutil.SerialException: could not open port COM1: [Errno 2] No such file or directory: 'COM1'
+
+Am I supposed to use something else rather then COM*..?
+
+Thanks in advance
+
+Maxim
+
+P.S. Hope the excavation goes well Stefano ;)
+
+Date: Wed, 29 Jun 2011 12:50:46 +0200
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">steko at iosa.it</A>
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">tops-dev at lists.berlios.de</A>
+Subject: Re: [tops-dev] FW:  TOPS installation under OpenSuse
+
+Il giorno Wed, 29/06/2011 alle 09.16 +0200, Stefano Costa ha scritto:
+&gt;<i> 
+</I>&gt;<i> The zipped source archive should work on any operating system, but it
+</I>&gt;<i> needs to be setup from the command line with &quot;python setup.py
+</I>&gt;<i> install&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> I think right now it's easier to do &quot;pip install totalopenstation&quot;
+</I>&gt;<i> from both Windows and Linux. This will install the PyPI version
+</I>&gt;<i> automatically.
+</I> 
+I found out that the Windows installer on PyPI was from 5 months ago.
+You can find a new version on PyPI. I also added the Mercurial revision
+ID to the program &quot;About&quot; window to make issue reporting easier (until
+we get to a proper release).
+ 
+&gt;<i> &gt; I downloaded the new version for windows from PyPi and installed it
+</I>&gt;<i> &gt; but the problems were the same..
+</I>&gt;<i> 
+</I>&gt;<i> This morning I'm doing some tests on Windows with a friend's laptop. I
+</I>&gt;<i> will post an update later.
+</I>&gt;<i> 
+</I>&gt;<i> We definitely need to improve our Windows user experience.
+</I> 
+I did several tests (basically, all those you went through a few weeks
+ago) and I always got errors connecting to the serial port, just like
+you reported.
+ 
+Disabling and enabling had no effect, even after a reboot. The program
+was run on Windows 7 as an Administrator user, with all privileges
+assigned to the totalopenstation-gui.py script.
+ 
+At this point, I'm really clueless about solving this blocking issue,
+and it's not something I don't care about, because I'm leaving for an
+archaeological excavation in 2 days and some members of my team are
+using Windows XP for their work.
+ 
+I'll keep you updated,
+steko
+ 
+-- 
+Stefano Costa
+<A HREF="http://www.iosa.it/">http://www.iosa.it/</A> Open Archaeology
+
+_______________________________________________
+tops-dev mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">tops-dev at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">https://lists.berlios.de/mailman/listinfo/tops-dev</A> 		 	   		  
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20110630/96c7ed5d/attachment.html">https://lists.berlios.de/pipermail/tops-dev/attachments/20110630/96c7ed5d/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000066.html">[tops-dev] FW:  TOPS installation under OpenSuse
+</A></li>
+	<LI>Next message: <A HREF="000068.html">[tops-dev] FW:  TOPS installation under OpenSuse
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#67">[ date ]</a>
+              <a href="thread.html#67">[ thread ]</a>
+              <a href="subject.html#67">[ subject ]</a>
+              <a href="author.html#67">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

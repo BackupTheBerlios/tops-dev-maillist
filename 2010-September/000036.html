@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] QGIS SurveyTools and Total Open Station
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20QGIS%20SurveyTools%20and%20Total%20Open%20Station&In-Reply-To=%3C1284795237.2530.8.camel%40ganymede%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] QGIS SurveyTools and Total Open Station</H1>
+    <B>Stefano Costa</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20QGIS%20SurveyTools%20and%20Total%20Open%20Station&In-Reply-To=%3C1284795237.2530.8.camel%40ganymede%3E"
+       TITLE="[tops-dev] QGIS SurveyTools and Total Open Station">steko at iosa.it
+       </A><BR>
+    <I>Sat Sep 18 09:33:57 CEST 2010</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#36">[ date ]</a>
+              <a href="thread.html#36">[ thread ]</a>
+              <a href="subject.html#36">[ subject ]</a>
+              <a href="author.html#36">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Il giorno lun, 09/08/2010 alle 16.35 +0200, Ziegler Stefan ha scritto:
+
+Hi Stefan,
+sorry for the delay, I'm overly busy doing fieldwork this summer..
+
+(CC'ing <A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">tops-dev at berlios.de</A>)
+
+&gt;<i> I found a some time to work on SuveyTools. What have I done:
+</I>&gt;<i> I'm using now your approach with loading a FormatParser (so I added a
+</I>&gt;<i> new format into formats.py). This Parser will not return points but
+</I>&gt;<i> will return stations with measurements I renamed TerrStation to
+</I>&gt;<i> Station and TerrMeasurement to Measurement. Measurements can be
+</I>&gt;<i> terrestrial but also can have some GPS measurements hence the
+</I>&gt;<i> renaming.
+</I>
+Wow! This is amazing news, especially about the replacement of Point
+with something more robust and explicit like Station and Measurement.
+
+I will take a look, I assume the code is always found at
+<A HREF="http://www.catais.org/qgis/plugins.xml">http://www.catais.org/qgis/plugins.xml</A> - by the way, what do you think
+about having a source code repository to track changes like we do on
+bitbucket.org ? 
+
+I see that you also developed a new LtopTools plugin, is it for another
+data format ?
+
+&gt;<i> So if you can live with stations that will be returned instead of
+</I>&gt;<i> points we could have the same Parsers. I definitely will clean up the
+</I>&gt;<i> code in the Stations and Measurements classes (better names of methods
+</I>&gt;<i> etc.). What do you think? The other way round is also possible. The
+</I>&gt;<i> Parsers still return points and I will convert the points outside to
+</I>&gt;<i> stations with measurements?
+</I>
+No, I think returning as much explicit as possible data is better - it's
+up to the &quot;output generator&quot; for each format to decode the raw
+measurements and give the user a reasonable choice. This is what we're
+already doing and it helps in keeping clearly separated input processing
+and output generation.
+
+&gt;<i> Btw: How to you get Python to import classes/files with a notation
+</I>&gt;<i> like &quot;totalopenstation.formats.XXX.YYY&quot;? 
+</I>
+totalopenstation is a top-level Python package, it has a setup.py and
+each sub-package has a __init__.py file telling the Python interpreter
+that that folder is a package. It's probably not needed for QGIS but
+it's certainly useful in general. Feel free to copy the directory
+structure from totalopenstation :-)
+
+All the best,
+steko
+
+-- 
+Stefano Costa &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">steko at iosa.it</A>&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#36">[ date ]</a>
+              <a href="thread.html#36">[ thread ]</a>
+              <a href="subject.html#36">[ subject ]</a>
+              <a href="author.html#36">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

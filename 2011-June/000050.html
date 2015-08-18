@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] Serial Exception: could not open port COM4: [Error 5]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Serial%20Exception%3A%20could%20not%20open%20port%20COM4%3A%20%5BError%205%5D&In-Reply-To=%3C1307547865.2130.136.camel%40ganymede%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000049.html">
+   <LINK REL="Next"  HREF="000059.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] Serial Exception: could not open port COM4: [Error 5]</H1>
+    <B>Stefano Costa</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Serial%20Exception%3A%20could%20not%20open%20port%20COM4%3A%20%5BError%205%5D&In-Reply-To=%3C1307547865.2130.136.camel%40ganymede%3E"
+       TITLE="[tops-dev] Serial Exception: could not open port COM4: [Error 5]">steko at iosa.it
+       </A><BR>
+    <I>Wed Jun  8 17:44:25 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000049.html">[tops-dev] Serial Exception: could not open port COM4: [Error 5]
+</A></li>
+        <LI>Next message: <A HREF="000059.html">[tops-dev] Serial Exception: could not open port COM4: [Error 5]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#50">[ date ]</a>
+              <a href="thread.html#50">[ thread ]</a>
+              <a href="subject.html#50">[ subject ]</a>
+              <a href="author.html#50">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Il giorno Wed, 08/06/2011 alle 14.43 +0100, Maxim Jaffe ha scritto:
+&gt;<i> 
+</I>&gt;<i> Here go the tests you suggested Stefano, along with some additional
+</I>&gt;<i> stuff..! Hope it is not to repetitive but prefer to send you more
+</I>&gt;<i> information then less..! Like I said I have a vague notion of python,
+</I>&gt;<i> just never have the time to study it properly.. really enjoy it though
+</I>&gt;<i> and these tests remind me why, it is quite easy to get practical
+</I>&gt;<i> results with it :)!
+</I>
+Hi Maxim,
+I'm happy to see that you like Python: this is one of the reasons why we
+chose it for writing TOPS, it's very easy to learn the basics and then
+you can make progress with time, and patience, like any other
+programming language ;-)
+
+&gt;<i> Also managed to install Portmon which seems quite useful although only
+</I>&gt;<i> have a slight clue of what the output means. I'll attach the portmon
+</I>&gt;<i> log of the session I ran on python (it has a .log extension but it
+</I>&gt;<i> seems to just be a text file, opens fine on notepad, guess it should
+</I>&gt;<i> open in gedit or similar).
+</I>[...]
+&gt;<i> Based on portmon everything seems to work fine, only time I got an
+</I>&gt;<i> error was when I forgot to close the the &quot;t&quot; variable. Left the error
+</I>&gt;<i> in just as an example. The last commands I found interesting since it
+</I>&gt;<i> showed a response in the portmon log, even though it outputs nothing
+</I>&gt;<i> be it by itself or assigned to a variable. I'm guessing it closes and
+</I>&gt;<i> opens on the fly as you mentioned right?
+</I>
+Your tests in the Python console seem to confirm exactly what I wrote in
+my previous e-mail. Portmon logs are quite obscure for me too, but I can
+confirm that assigning a variable to the *result* of a function call
+(like is the case with the last commands) is equivalent to calling the
+function. It's just the output in the terminal that changes.
+
+&gt;<i> There just one thing that stills boggles me a bit, is that I ran all
+</I>&gt;<i> these test simply with the usb to serial cable connected so COM4 would
+</I>&gt;<i> be recognised, but no device on its end..! I guess for these kinds of
+</I>&gt;<i> tests there is no need to have a device connected right..?
+</I>
+I think that from the computer's point of view there is no difference in
+having or not having a device at the cable end: in fact, on GNU/Linux
+the device is recognised as &quot;usb-serial adapter&quot; regardless of the
+device you plug in (total station, GPS handheld .. etc).
+
+&gt;<i> Anyways about trying to run things again on TOPS the only thing I have
+</I>&gt;<i> to report different is that now I know something happens based on
+</I>&gt;<i> Portmon's log (I'll also attach it). It seems to open the port when I
+</I>&gt;<i> have the total station connected and on but I don't see any output
+</I>&gt;<i> mentioning the port  being closed (like in the previous tests). Also
+</I>&gt;<i> no message from the gui show up only in the python shell that opens up
+</I>&gt;<i> along with, only when you press the connect button again does it show
+</I>&gt;<i> a message. 
+</I>
+Ok then. At this point it's clear that we need to add some code to
+handle this kind of situation on Windows, both when opening for the
+first time (making sure the port is closed) and at the end of the
+process. I'm not sure it can be actually done within Python: if not,
+then we will add detailed instructions into the GUI dialog on how to
+restore the COM port when such an error is found.
+
+I'm not sure to understand what are the exact results when running TOPS
+after this test session at this point.
+
+However, if you can &quot;Connect&quot; from the GUI without any errors, you
+should be able to download data from your total station. I don't know
+how your model works: in most cases, you can start the data transfer
+from the total station menu (TOPS will take care of saving the data as
+they are received on the computer side). Can you confirm that it works,
+once the serial port is cleared, and that downloaded raw data are
+displayed in the program's main area?
+
+Thanks a lot for your detailed report! Hopefully we can proceed with the
+data processing once these issues are cleared.
+
+Ciao,
+Stefano
+
+-- 
+Stefano Costa
+<A HREF="http://www.iosa.it/">http://www.iosa.it/</A> Open Archaeology
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20110608/c440498a/attachment.pgp">https://lists.berlios.de/pipermail/tops-dev/attachments/20110608/c440498a/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000049.html">[tops-dev] Serial Exception: could not open port COM4: [Error 5]
+</A></li>
+	<LI>Next message: <A HREF="000059.html">[tops-dev] Serial Exception: could not open port COM4: [Error 5]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#50">[ date ]</a>
+              <a href="thread.html#50">[ thread ]</a>
+              <a href="subject.html#50">[ subject ]</a>
+              <a href="author.html#50">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

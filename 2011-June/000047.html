@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] Serial Exception: could not open port COM4: [Error 5]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Serial%20Exception%3A%20could%20not%20open%20port%20COM4%3A%20%5BError%205%5D&In-Reply-To=%3Ccol111-w142C08BC1321A1DD0BC3268E630%40phx.gbl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000046.html">
+   <LINK REL="Next"  HREF="000048.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] Serial Exception: could not open port COM4: [Error 5]</H1>
+    <B>Maxim Jaffe</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Serial%20Exception%3A%20could%20not%20open%20port%20COM4%3A%20%5BError%205%5D&In-Reply-To=%3Ccol111-w142C08BC1321A1DD0BC3268E630%40phx.gbl%3E"
+       TITLE="[tops-dev] Serial Exception: could not open port COM4: [Error 5]">maxim_jaffe at hotmail.com
+       </A><BR>
+    <I>Tue Jun  7 20:58:40 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000046.html">[tops-dev] Serial Exception: could not open port COM4: [Error 5]
+</A></li>
+        <LI>Next message: <A HREF="000048.html">[tops-dev] Serial Exception: could not open port COM4: [Error 5]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#47">[ date ]</a>
+              <a href="thread.html#47">[ thread ]</a>
+              <a href="subject.html#47">[ subject ]</a>
+              <a href="author.html#47">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Sorry forgot to send it to the list, rather than to your email stefano!
+
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">maxim_jaffe at hotmail.com</A>
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">steko at iosa.it</A>
+Subject: RE: [tops-dev] Serial Exception: could not open port COM4: [Error 5]
+Date: Tue, 7 Jun 2011 19:55:47 +0100
+
+
+
+
+
+
+
+
+
+Ciao Stefano!
+
+Thanks for the quick reply :)!
+
+I'm not sure how to run something with admin previleges in windows... The computer I'm using has a single account with admin previleges setup, is that enough..? Apart from that had tried all the other suggestions they give in the link you sent me.
+
+I tried the test you mentioned with the total station connected and baud rate set to 19200 on the device manager:
+
+&gt;&gt;&gt;<i> import serial
+</I>&gt;&gt;&gt;<i> s = serial.Serial('COM4')
+</I>&gt;&gt;&gt;<i> s.open()
+</I>
+Traceback (most recent call last):
+  File &quot;&lt;pyshell#2&gt;&quot;, line 1, in &lt;module&gt;
+    s.open()
+  File &quot;C:\Python25\Lib\site-packages\serial\serialwin32.py&quot;, line 56, in open
+    raise SerialException(&quot;could not open port %s: %s&quot; % (self.portstr, ctypes.WinError()))
+SerialException: could not open port COM4: [Error 5] Acesso negado.
+&gt;&gt;&gt;<i> 
+</I>
+Now what I found interesting was when I ran the first function without puting into the variable &quot;s&quot; in a new session (just to check what it was up to) I had this result:
+
+&gt;&gt;&gt;<i> import serial
+</I>&gt;&gt;&gt;<i> serial.Serial('COM4')
+</I>Serial&lt;id=0x1055150, open=True&gt;(port='COM4', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+&gt;&gt;&gt;<i> serial.Serial('COM4')
+</I>
+Traceback (most recent call last):
+  File &quot;&lt;pyshell#6&gt;&quot;, line 1, in &lt;module&gt;
+    serial.Serial('COM4')
+  File &quot;C:\Python25\Lib\site-packages\serial\serialwin32.py&quot;, line 30, in __init__
+    SerialBase.__init__(self, *args, **kwargs)
+  File &quot;C:\Python25\Lib\site-packages\serial\serialutil.py&quot;, line 260, in __init__
+    self.open()
+  File &quot;C:\Python25\Lib\site-packages\serial\serialwin32.py&quot;, line 56, in open
+    raise SerialException(&quot;could not open port %s: %s&quot; % (self.portstr, ctypes.WinError()))
+SerialException: could not open port COM4: [Error 5] Acesso negado.
+&gt;&gt;&gt;<i>
+</I>
+The first time the serial.Serial() function seems to run okay and second time it gave the error. Everytime you restart the shell the function works fine first time around. I also realized that the baudrate through that command was 9600 so tried running the command with baudrate=19200 as an argument which returns a similar result, first time works and second time doesn't anymore.
+
+Any ideas..?
+
+On a side note, I have a portable with opensuse installed but don't have a 9-pin 
+serial port and not sure where to get a driver for the usb to serial 
+cable, plus I haven't even looked into installing TOPS in that computer 
+so figured that in windows it seemed a little more straightforward to 
+test everything. Also, although I'm a big fan of linux systems, it be nice to have this working with FUMDHAM's computers which are mostly running windows..!
+
+Thanks for you help, hope we can get to the end of this problem ;)!
+
+Saluti,
+Maxim
+
+Date: Tue, 7 Jun 2011 17:41:56 +0200
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">steko at iosa.it</A>
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">tops-dev at lists.berlios.de</A>
+Subject: Re: [tops-dev] Serial Exception: could not open port COM4: [Error 5]
+
+Il giorno Tue, 07/06/2011 alle 16.09 +0100, Maxim Jaffe ha scritto:
+&gt;<i> 
+</I>&gt;<i> I read some posts about the error that seems to be associated with the
+</I>&gt;<i> pyserial module. I noticed some mentioned something about trouble with
+</I>&gt;<i> the code related to the funcitons ser.close() and ser.open(), even
+</I>&gt;<i> looked up those on the code of the TOPS scripts but couldn't really
+</I>&gt;<i> figure out where those functions could be, and not really sure what I
+</I>&gt;<i> would do even if I did.
+</I> 
+Hello Maxim,
+welcome! Let's see if we can help you. Apparently the problem is not
+with TOPS itself, but with pyserial not being able to open COM4, as you
+have already noted.
+ 
+First of all, you could try one of the solutions proposed here
+<A HREF="http://stackoverflow.com/questions/6105182/error-while-opening-port-in-python">http://stackoverflow.com/questions/6105182/error-while-opening-port-in-python</A>
+ 
+If nothing works, can I ask you to perform the following to test if this
+is a bug, and then we can investigate the problem in depth or go to the
+pyserial mailing list and ask for help there.
+ 
+     1. open a Python terminal (it should be named &quot;IDLE&quot; in the Start
+        menu)
+     2. the prompt is &quot;&gt;&gt;&gt;&quot;
+     3. try &quot;import serial&quot; at the prompt and ENTER (everything should
+        work)
+     4. then type &quot;s = serial.Serial('COM4')&quot; and ENTER
+     5. &quot;s.open()&quot; and see if the same error comes out as you posted
+     6. if it gives you an error, try again but using number instead of
+        port name, like &quot;s = serial.Serial(3)&quot; &#8210; (numbers start from 0
+        so 3 should be the same as COM4)
+     7. see if any error comes out with &quot;s.open()&quot;
+ 
+I hope this is not too difficult, but I got the impression from your
+e-mail that it will be easy for you to test it this way. Let us know
+what are your results.
+ 
+&gt;<i> On a short note working for the archeological NGO FUMDHAM in Piau&#237;,
+</I>&gt;<i> Brazil and we are trying out open source software alternatives for our
+</I>&gt;<i> cartography and topography sections. 
+</I> 
+This is great news! Can I suggest you to get in touch with OSGeo Brasil
+<A HREF="http://wiki.osgeo.org/wiki/Brasil">http://wiki.osgeo.org/wiki/Brasil</A> if you didn't already? They will help
+you a lot with everything related to cartography and geographical
+software.
+ 
+We are really glad to hear that TOPS is used for an archaeological NGO!
+We are archaeologists ourselves, and we are working since many years
+with open source software, TOPS is our small contribution to the
+collective effort!
+ 
+Ciao,
+Stefano
+ 
+-- 
+Stefano Costa
+<A HREF="http://www.iosa.it/">http://www.iosa.it/</A> Open Archaeology
+
+_______________________________________________
+tops-dev mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">tops-dev at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/tops-dev">https://lists.berlios.de/mailman/listinfo/tops-dev</A> 		 	   		  
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20110607/5fad0d1f/attachment.html">https://lists.berlios.de/pipermail/tops-dev/attachments/20110607/5fad0d1f/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000046.html">[tops-dev] Serial Exception: could not open port COM4: [Error 5]
+</A></li>
+	<LI>Next message: <A HREF="000048.html">[tops-dev] Serial Exception: could not open port COM4: [Error 5]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#47">[ date ]</a>
+              <a href="thread.html#47">[ thread ]</a>
+              <a href="subject.html#47">[ subject ]</a>
+              <a href="author.html#47">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

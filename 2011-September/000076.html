@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] A couple of bugs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20A%20couple%20of%20bugs&In-Reply-To=%3C4E7CF5D9.6050201%40iosa.it%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000075.html">
+   <LINK REL="Next"  HREF="000077.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] A couple of bugs</H1>
+    <B>Stefano Costa</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20A%20couple%20of%20bugs&In-Reply-To=%3C4E7CF5D9.6050201%40iosa.it%3E"
+       TITLE="[tops-dev] A couple of bugs">steko at iosa.it
+       </A><BR>
+    <I>Fri Sep 23 23:10:49 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000075.html">[tops-dev] A couple of bugs
+</A></li>
+        <LI>Next message: <A HREF="000077.html">[tops-dev] A couple of bugs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#76">[ date ]</a>
+              <a href="thread.html#76">[ thread ]</a>
+              <a href="subject.html#76">[ subject ]</a>
+              <a href="author.html#76">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Il 23/09/11 15:20, Anna Hodgkinson ha scritto:
+&gt;<i> Hello,
+</I>&gt;<i> 
+</I>&gt;<i> I am reporting a couple of faults discovered whilst using TOPS to download a
+</I>&gt;<i> Leica TCR705 total station:
+</I>
+Hi Anna,
+thanks a lot for your detailed reports. Replies are inline below.
+
+&gt;<i> 1) When sending the data (after connecting my total station to the laptop)
+</I>&gt;<i> TOPS sends me a message after 527 bytes saying my download had finished,
+</I>&gt;<i> even though no &quot;end&quot; message had been displayed in the data window. The
+</I>&gt;<i> total station's display is then still saying it's &quot;Downloading
+</I>&gt;<i> Measurements&quot;. So, when I hit &quot;connect&quot; again the download continues to
+</I>&gt;<i> download all the data and the &quot;end&quot; message finally is displayed after a
+</I>&gt;<i> while.
+</I>
+This looks like a bug here
+<A HREF="https://bitbucket.org/steko/totalopenstation/src/27a645a3158d/scripts/totalopenstation-gui.py#cl-696">https://bitbucket.org/steko/totalopenstation/src/27a645a3158d/scripts/totalopenstation-gui.py#cl-696</A>
+and in the following lines. The sleep() call should not be hardcoded.
+
+Could you provide us with the connection parameters you are using? Are
+the parameters (especially, baudrate) the same as hard-coded at
+<A HREF="https://bitbucket.org/steko/totalopenstation/src/27a645a3158d/totalopenstation/models/leica_tcr_705.py#cl-14">https://bitbucket.org/steko/totalopenstation/src/27a645a3158d/totalopenstation/models/leica_tcr_705.py#cl-14</A>
+? Again, we should move these parameters out of Python code. We already
+have a plan for this &#8210; it's not necessarily related to the problem
+you're experiencing but it should help.
+
+&gt;<i> 2) The Leica TCR705 allows one to download both measurements and fixpoints
+</I>&gt;<i> separately. I tend to download these as DXFs and then ave the raw data as
+</I>&gt;<i> DXF from TOPS, too.
+</I>&gt;<i> I use the DXF2SHP converter in QGIS to obtain the measurements, and this
+</I>&gt;<i> works fine. I get both a data and a text layer. The data layer is usually
+</I>&gt;<i> empty, but the text layer has all the data in it. When I try converting the
+</I>&gt;<i> fixpoints.dxf to shape I only get an (empty) data layer.
+</I>
+I am afraid this depends on how the DXF is crafted specifically for the
+purposes of the first person who asked me to support it. Could you
+please send us both a sample raw file and a DXF with the expected
+output? One thing we are working on is to have options for output
+formats, so that we can have multiple usage patterns.
+
+There's also a nice trick you could do with GeoJSON that would save you
+from using DXF2SHP, but I'm leaving that for another time.
+
+All the best,
+steko
+
+-- 
+<A HREF="http://steko.iosa.it/">http://steko.iosa.it/</A> - Stefano Costa
+<A HREF="http://www.iosa.it/">http://www.iosa.it/</A> - Open Archaeology
+<A HREF="http://www.attivarti.org/">http://www.attivarti.org/</A> - l'associazione per m(')appare
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/tops-dev/attachments/20110923/66b72449/attachment.pgp">https://lists.berlios.de/pipermail/tops-dev/attachments/20110923/66b72449/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000075.html">[tops-dev] A couple of bugs
+</A></li>
+	<LI>Next message: <A HREF="000077.html">[tops-dev] A couple of bugs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#76">[ date ]</a>
+              <a href="thread.html#76">[ thread ]</a>
+              <a href="subject.html#76">[ subject ]</a>
+              <a href="author.html#76">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>

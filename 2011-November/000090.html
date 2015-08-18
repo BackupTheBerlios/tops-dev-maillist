@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [tops-dev] Issues with TOPS on Windows XP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/tops-dev/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Issues%20with%20TOPS%20on%20Windows%20XP&In-Reply-To=%3C1321967641.12993.13.camel%40gibreel.funaioli.unisi.it%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000089.html">
+   <LINK REL="Next"  HREF="000091.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[tops-dev] Issues with TOPS on Windows XP</H1>
+    <B>Stefano Costa</B> 
+    <A HREF="mailto:tops-dev%40lists.berlios.de?Subject=Re%3A%20%5Btops-dev%5D%20Issues%20with%20TOPS%20on%20Windows%20XP&In-Reply-To=%3C1321967641.12993.13.camel%40gibreel.funaioli.unisi.it%3E"
+       TITLE="[tops-dev] Issues with TOPS on Windows XP">steko at iosa.it
+       </A><BR>
+    <I>Tue Nov 22 14:14:01 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000089.html">[tops-dev] Issues with TOPS on Windows XP
+</A></li>
+        <LI>Next message: <A HREF="000091.html">[tops-dev] Issues with TOPS on Windows XP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#90">[ date ]</a>
+              <a href="thread.html#90">[ thread ]</a>
+              <a href="subject.html#90">[ subject ]</a>
+              <a href="author.html#90">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Il giorno mar, 22/11/2011 alle 11.07 +0000, Anna Hodgkinson ha scritto:
+&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I have now had a chance to test your methodology of installing TOPS on
+</I>&gt;<i> Windows and it works! 
+</I>
+Anna, thanks a lot! With this successful installation I give the
+existing instructions as working. I will move them from the wiki to the
+main documentation site and then release the current TOPS version as
+0.3.
+
+This is a big step forward, our first proper release, so let's party! :)
+
+Now to the real stuff:
+
+&gt;<i> My problem is that I still can't get line data off the machine:
+</I>&gt;<i> I send the data off the total station (Leica TCR805, works with the
+</I>&gt;<i> TCR705 parser) in AutoCAD (dxf) format. Then I save the data as .dxf.
+</I>&gt;<i> When I use the dxf2shp converter in Windows I still only get points,
+</I>&gt;<i> no lines. 
+</I>&gt;<i> What format should I export as / save in, in order to get line data?
+</I>&gt;<i> GSI?
+</I>
+Do I understand correctly that you download the data without problems
+(i.e. you can see the transferred data in the text area box)? If so, and
+if you're getting a DXF file straight from the total station, make sure
+you save it directly and not through the &quot;Process&quot; dialog (that means
+using &quot;Save data&quot;). DXF is not good for being processed, by the way. GSI
+instead is what we should aim to support (but we don't support it yet).
+
+Maybe my previous e-mails on this topic were confusing, but at the
+moment TOPS cannot process line data. This is one of our targets for
+0.4. It would be fantastic if you could assist us in developing this new
+functionality, both providing us with raw data (in GSI format) and
+testing the program.
+
+Ciao,
+steko
+
+PS it might be interesting that the SurveyTools plugin for QGIS
+<A HREF="http://www.catais.org/qgis/plugins.xml">http://www.catais.org/qgis/plugins.xml</A> by Stefan Ziegler incorporates a
+GSI8 parser. Last year Stefan and I discussed general plans for merging
+SurveyTools and TOPS in a single codebase (leaving the QGIS plugin
+separate from the backend), but we never had the time and energy to do
+it. Still, the code is there and could be easily adapted to fit the TOPS
+architecture.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000089.html">[tops-dev] Issues with TOPS on Windows XP
+</A></li>
+	<LI>Next message: <A HREF="000091.html">[tops-dev] Issues with TOPS on Windows XP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#90">[ date ]</a>
+              <a href="thread.html#90">[ thread ]</a>
+              <a href="subject.html#90">[ subject ]</a>
+              <a href="author.html#90">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/tops-dev">More information about the tops-dev
+mailing list</a><br>
+</body></html>
